@@ -11,6 +11,15 @@
 
 ## Code Snippets (I will add example code here)
 
+**Module Docstring**
+```
+"""
+Network connectivity monitor.
+
+This script checks whether specified servers are reachable
+and logs the results to a file.
+"""
+```
 
 ---
 
