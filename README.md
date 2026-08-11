@@ -36,6 +36,18 @@ TIMEOUT = 5
 LOG_FILE = "connectivity_log.txt"
 ```
 
+**Main Execution Block**
+```
+def main():
+   """Main workflow for checking servers."""
+   for server in SERVERS:
+      if check_connection(server, PORT):
+         status = "REACHABLE"
+      else:
+         status = "UNREACHABLE"
+      print(f"{server}: {status}")
+      log_result(server, status)
+```
 
 ---
 
