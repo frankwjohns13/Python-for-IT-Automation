@@ -527,7 +527,13 @@ To prepare for the assessment, ask yourself these questions:
 
 ---
 
+**Prepare for the Assessment**\
+To prepare for the assessment ask yourself these questions:
+- Can I develop a Python script that uses if-else statements to monitor system conditions and automatically triggers an alert or action based on specified criteria?
+- Can I create a Python script utilizing for and while loops to iterate through directories and files, performing automated backups and logging the results for each file processed?
+- Can I create a Python script that processes data extracted from a file, applies control structures to organize the information, and stores the results for reporting purposes?
 
+---
 
 
 <!-- 
