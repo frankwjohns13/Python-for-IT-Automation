@@ -134,9 +134,24 @@ Notice how much easier it is to read when it has proper spacing. This makes upda
      - prints a message for each one
      - displays an alert if a server is down
      - displays a normal message if the server is operational
+
+   ---
    
    **Task**\
    You will refactor the provided script to improve its structure, readability, and maintainability. You must not change what the script does, only how it is written.
+   
+   **Overview**\
+   You will refactor the provided script to improve its structure, readability, and maintainability. You must not change what the script does, only how it is written.
+
+   **What the Script Does**\
+   The script simulates a simple monitoring task:
+   - It contains a list of servers.
+   - Each server has a hostname and a status ("up" or "down").
+   - The script does the following:
+     - checks each server
+     - prints a message for each one
+     - displays an alert if a server is down
+     - displays a normal message if the server is operational
    
    **Requirements**\
    Your refactored script must include the following components:
@@ -289,9 +304,149 @@ Notice how much easier it is to read when it has proper spacing. This makes upda
    
    **Notes**\
    This script is intended for basic connectivity verification and can be scheduled to run periodically using a task scheduler or cron job.
+
+   ---
    
+   **Task**\
+   Write a README file for the provided script.
+
+   Your README must do the following:
+   - Clearly explain the purpose.
+   - Document usage correctly.
+   - Describe the configuration variables.
+   - Explain the data structures used.
+   - Summarize the control logic.
+   - Include example execution and output.
+   - Use clear formatting.
+   - Be understandable without reading the script.
+   
+   **Overview**\
+   You will create a README file for a provided Python automation script. Your README should explain the script clearly enough that another person can understand what the script does and how to use it without opening         the source code.
+
+   **What the Script Does**\
+   The provided script checks the status of several servers and prints a message for each one.
+
+   Depending on the server's status, the script will perform the following:
+   - Print a normal message if the server is operational.
+   - Print a warning if the server needs attention.
+   - Print an alert if the server is down.
+
+   Your README should explain this behavior clearly.
+   
+   **Required Sections**\
+   Your README must include these sections:
+   - Project Title
+   - Purpose/Overview
+   - Usage Instructions
+   - Configuration Variables
+   - Data Structures
+   - Logic Overview
+   - Example Execution/Output
+
+   ```
+   Automation Script
+   """
+   Monitors server status values and reports whether each server is operational.
+   
+   This script checks a list of servers and prints either an alert message
+   or a normal status message based on each server's current condition.
+   """
+   DOWN_STATUS = "down"
+   WARNING_STATUS = "warning"
+   
+   servers = [
+      {"hostname": "web01", "status": "up"},
+      {"hostname": "db01", "status": "down"},
+      {"hostname": "app01", "status": "warning"},
+      {"hostname": "dns01", "status": "up"}
+   ]
+   
+   def check_servers():
+      """Check each server and print a message based on its status."""
+      for server in servers:
+         hostname = server["hostname"]
+         status = server["status"]
+   
+         if status == DOWN_STATUS:
+           print(f"ALERT: {hostname} is down")
+         elif status == WARNING_STATUS:
+           print(f"WARNING: {hostname} needs attention")
+         else:
+           print(f"{hostname} is operational")
+   
+   if __name__ == "__main__":
+      check_servers()
+
+   ```
+
+   ---
+   
+  <details><summary><strong>Solution</strong></summary>
+   
+   ## Applied Practice S1L2
+   **Server Status Monitor**
+  
+   **Purpose / Overview**\
+   This Python script monitors the status of a small group of servers and prints a message for each one. It is designed to 
+   simulate a basic system monitoring task by checking whether a server is operational, in a warning state, or down.\
+   The script helps demonstrate how conditional logic can be used to evaluate system conditions and produce appropriate 
+   output. 
+   
+   **Usage Instructions**
+   Run the script in Python:
+   python server_status_monitor.py
+   When the script runs, it checks each server in the list and prints a message based on its status. 
+   
+   **Configuration Variables**
+   
+   | **Variable** | **Type** | **Description** |
+   |:-------------|:--------:|:----------------|
+   | DOWN_STATUS  | string   | The status value that indicates a server is down |
+   | WARNING_STATUS | string | The status value that indicates a server needs attention |
+   | servers | list | A list of dictionaries containing server names and status values |
+   
+   **Data Structures**\
+   The script uses a list of dictionaries to store server information. 
+   - The list stores multiple server records.
+   - Each dictionary represents one server.
+   - Each server dictionary contains:
+     - hostname: the name of the server
+     - status: the current status of the server 
+   
+   **Example:**
+   `{"hostname": "web01", "status": "up"} `\
+   This structure makes it easy to loop through all servers and evaluate each one individually. 
+      
+   **Logic Overview**\
+   The script uses a for loop to iterate through the list of servers. For each server, it checks the value of the status field. 
+   - If the status is equal to DOWN_STATUS, the script prints an alert.
+   - If the status is equal to WARNING_STATUS, the script prints a warning.
+   - Otherwise, the script prints that the server is operational. 
+   This decision-making is controlled with if, elif, and else statements. 
+   
+   **Example Execution / Output**
+   
+   **Example command**\
+   `python server_status_monitor.py `
+   
+   **Example output**
+   ```
+   web01 is operational 
+   ALERT: db01 is down 
+   WARNING: app01 needs attention 
+   dns01 is operational
+   ```
+   
+   </details>
 
 </details>
+
+---
+
+
+
+
+
 
 
 
