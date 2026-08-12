@@ -1,18 +1,20 @@
 # Python for IT Automation - D522 - Notes
 
-## Key Terms (A running collection of terms I feel are important from each section)
-- **Module Docstring:** a documentation string placed at the beginning of a Python file that explains the script's purpose, functionality, and sometimes its inputs or environment requirements. Indicated by triple quotes.
-- **Import Statements:** Python statements used to include built-in modules or external libraries so their functions and features can be used within the script
-- **Constants:** named variables whose values are intended to remain unchanged during program execution, typically written in uppercase letters to indicate that they represent fixed configuration values
-- **Main Execution block:** the section of a Python script that contains the code that should run when the script is executed directly
-- **Clean Code:** Clean code is essential in automation because scripts often support operational workflows where reliability, readability, and maintainability are critical.
-- **Hard-coded:** Hard-coding occurs when you use values instead of variables. This makes updating difficult as every place that value is used has to be found and corrected if something changes.
-- **README:** Is a document that explains how a piece of software or script works.
-- **cron:** Unix or Linux scheduling tool that automates recurring commands or scripts at specified times
+<details><summary><Strong>Key Terms (A running collection of terms I feel are important from each section)</Strong></summary> 
 
+   - **Module Docstring:** a documentation string placed at the beginning of a Python file that explains the script's purpose, functionality, and sometimes its inputs or environment requirements. Indicated by triple quotes.
+   - **Import Statements:** Python statements used to include built-in modules or external libraries so their functions and features can be used within the script
+   - **Constants:** named variables whose values are intended to remain unchanged during program execution, typically written in uppercase letters to indicate that they represent fixed configuration values
+   - **Main Execution block:** the section of a Python script that contains the code that should run when the script is executed directly
+   - **Clean Code:** Clean code is essential in automation because scripts often support operational workflows where reliability, readability, and maintainability are critical.
+   - **Hard-coded:** Hard-coding occurs when you use values instead of variables. This makes updating difficult as every place that value is used has to be found and corrected if something changes.
+   - **README:** Is a document that explains how a piece of software or script works.
+   - **cron:** Unix or Linux scheduling tool that automates recurring commands or scripts at specified times
+
+</details>
 ---
 
-## Code Snippets (I will add example code here)
+<details><summary><strong>Code Snippets (I will add example code here)</summary>
 
 **Module Docstring** 
 ```
@@ -86,204 +88,209 @@ for server in servers:
 ```
 Notice how much easier it is to read when it has proper spacing. This makes updating, error checking, and troubleshooting easier.
 
-
-
----
-
-## Lesson 1
-
-**Learning Objectives**
-- Develop a Python script that demonstrates correct syntax, clean structure, meaningful variable handling, and appropriate inline documentation.
-
-**Hard-coded:** Hard-coding occurs when you use values instead of variables. This makes updating difficult as every place that value is used has to be found and corrected if something changes.
-
----
-
-### Variable Naming:
-A good variable name describes the data it contains. Variable names must follow the following four rules:
-- Cannot have spaces
-- can use only letters, numbers, and underscores (_)
-- Cannot begin with a number
-- Cannot be a Python keyword, (if, for, return...)
-
----
-
-### Effective Documentation
-Professional Python code contains documentation within the script. Clear documentation allows other coders to quickly understand what the code block is for. Documentation blocks start and end with triple quote marks. 
-```
-"""
-This code check which servers are up
-"""
-```
-
----
-
-### Lesson 1 - Refactoring an Automation Script Practical
-**Overview**\
-In this task, you will take an existing Python script and refactor it.
-
-**What the Script Does**\
-The script simulates a simple monitoring task:
-- It contains a list of servers.
-- Each server has a hostname and a status ("up" or "down").
-- The script does the following:
-  - checks each server
-  - prints a message for each one
-  - displays an alert if a server is down
-  - displays a normal message if the server is operational
-
-**Task**\
-You will refactor the provided script to improve its structure, readability, and maintainability. You must not change what the script does, only how it is written.
-
-**Requirements**\
-Your refactored script must include the following components:
-
-**Clean Structure**
-- Use proper indentation.
-- Organize code into logical sections.
-- Avoid writing multiple statements on one line.
-
-**Meaningful Variable Names**
-- Replace unclear names.
-- Use descriptive names.
-
-**Constants for Configuration**
-- Replace hard-coded values with named constants.
-
-**Module Docstring**
-- At the top of your script, include a docstring that explains what the script does and what problem it solves.
-
-**Clear Inline Documentation**
-- Add comments to explain intent, not obvious code.
-
-**Proper Formatting and Syntax**
-- Follow consistent spacing.
-- Use readable formatting.
-- Ensure the script runs without syntax errors.
-
-**Use a Main Function**
-- Wrap your logic in a function.
-- Use the following:
-
-```
-if __name__ == "__main__":
-check_servers()
-```
-
-**What You Should Not Do**
-- Do not change the logic or output of the script.
-- Do not add new features.
-
-**Code to Refactor**
-```
-servers=[{"hostname":"web01","status":"up"},{"hostname":"db01","status":"down"},{"hostname":"app01","status":"up"},{"hostname":"dns01","status":"down"}]
-def x():
-   for s in servers:
-      h=s["hostname"];z=s["status"]
-      if z=="down":print(h+" is down")
-      else:print(h+" is operational")
-x()
-```
-
-<details><summary><strong>Solution (One possible solution)</strong></summary>
-
-   ```
-   Correct code: 
-   """ 
-   Checks the status of servers and prints alerts for any server 
-   that is down.
-
-   This script iterates through a list of servers and reports 
-   whether each server is operational or requires attention. 
-   """ 
-   DOWN_STATUS = "down"   """ Setting a constant variable to 'down' for status check later """
-
-   """ Putting each server on its own line makes it clear to see what each one is """
-   servers = [ 
-      {"hostname": "web01", "status": "up"}, 
-      {"hostname": "db01", "status": "down"}, 
-      {"hostname": "app01", "status": "up"}, 
-      {"hostname": "dns01", "status": "down"} 
-   ]
-
-   """ This section defines the function we are creating """
-   def Check_servers_status(): 
-   """Check each server and print its status.""" 
-      for server in servers: 
-         hostname = server["hostname"] 
-         status = server["status"] 
-   
-         # Determine if the server is down 
-         if status == DOWN_STATUS: 
-            print(f"ALERT: {hostname} is down") 
-         else: 
-            print(f"{hostname} is operational")
-   
-   if __name__ == "__main__": 
-      Check_servers_status() """ This calls the previously declared function. """
-
-```
 </details>
 
-**End Lesson 1**
+---
+
+<details><summary><strong>Lesson 1</strong></summary>
+
+   **Learning Objectives**
+   - Develop a Python script that demonstrates correct syntax, clean structure, meaningful variable handling, and appropriate inline documentation.
+   
+   **Hard-coded:** Hard-coding occurs when you use values instead of variables. This makes updating difficult as every place that value is used has to be found and corrected if something changes.
+   
+   ---
+   
+   ### Variable Naming:
+   A good variable name describes the data it contains. Variable names must follow the following four rules:
+   - Cannot have spaces
+   - can use only letters, numbers, and underscores (_)
+   - Cannot begin with a number
+   - Cannot be a Python keyword, (if, for, return...)
+   
+   ---
+   
+   ### Effective Documentation
+   Professional Python code contains documentation within the script. Clear documentation allows other coders to quickly understand what the code block is for. Documentation blocks start and end with triple quote marks. 
+   ```
+   """
+   This code check which servers are up
+   """
+   ```
+   
+   ---
+   
+   ### Lesson 1 - Refactoring an Automation Script Practical
+   **Overview**\
+   In this task, you will take an existing Python script and refactor it.
+   
+   **What the Script Does**\
+   The script simulates a simple monitoring task:
+   - It contains a list of servers.
+   - Each server has a hostname and a status ("up" or "down").
+   - The script does the following:
+     - checks each server
+     - prints a message for each one
+     - displays an alert if a server is down
+     - displays a normal message if the server is operational
+   
+   **Task**\
+   You will refactor the provided script to improve its structure, readability, and maintainability. You must not change what the script does, only how it is written.
+   
+   **Requirements**\
+   Your refactored script must include the following components:
+   
+   **Clean Structure**
+   - Use proper indentation.
+   - Organize code into logical sections.
+   - Avoid writing multiple statements on one line.
+   
+   **Meaningful Variable Names**
+   - Replace unclear names.
+   - Use descriptive names.
+   
+   **Constants for Configuration**
+   - Replace hard-coded values with named constants.
+   
+   **Module Docstring**
+   - At the top of your script, include a docstring that explains what the script does and what problem it solves.
+   
+   **Clear Inline Documentation**
+   - Add comments to explain intent, not obvious code.
+   
+   **Proper Formatting and Syntax**
+   - Follow consistent spacing.
+   - Use readable formatting.
+   - Ensure the script runs without syntax errors.
+   
+   **Use a Main Function**
+   - Wrap your logic in a function.
+   - Use the following:
+   
+   ```
+   if __name__ == "__main__":
+   check_servers()
+   ```
+   
+   **What You Should Not Do**
+   - Do not change the logic or output of the script.
+   - Do not add new features.
+   
+   **Code to Refactor**
+   ```
+   servers=[{"hostname":"web01","status":"up"},{"hostname":"db01","status":"down"},{"hostname":"app01","status":"up"},{"hostname":"dns01","status":"down"}]
+   def x():
+      for s in servers:
+         h=s["hostname"];z=s["status"]
+         if z=="down":print(h+" is down")
+         else:print(h+" is operational")
+   x()
+   ```
+   
+   <details><summary><strong>Solution (One possible solution)</strong></summary>
+   
+      ```
+      Correct code: 
+      """ 
+      Checks the status of servers and prints alerts for any server 
+      that is down.
+   
+      This script iterates through a list of servers and reports 
+      whether each server is operational or requires attention. 
+      """ 
+      DOWN_STATUS = "down"   """ Setting a constant variable to 'down' for status check later """
+   
+      """ Putting each server on its own line makes it clear to see what each one is """
+      servers = [ 
+         {"hostname": "web01", "status": "up"}, 
+         {"hostname": "db01", "status": "down"}, 
+         {"hostname": "app01", "status": "up"}, 
+         {"hostname": "dns01", "status": "down"} 
+      ]
+   
+      """ This section defines the function we are creating """
+      def Check_servers_status(): 
+      """Check each server and print its status.""" 
+         for server in servers: 
+            hostname = server["hostname"] 
+            status = server["status"] 
+      
+            # Determine if the server is down 
+            if status == DOWN_STATUS: 
+               print(f"ALERT: {hostname} is down") 
+            else: 
+               print(f"{hostname} is operational")
+      
+      if __name__ == "__main__": 
+         Check_servers_status() """ This calls the previously declared function. """
+   
+      ```
+      
+   </details>
+   
+   **End Lesson 1**
+
+</details>
 
 ---
 
-## Lesson 2
+<details><summary><strong>Lesson 2</strong></summary>
 
-**Learning Objectives**
-- Produce a README file that clearly documents the purpose, usage, functionality, variables, data structures, and control logic of a Python script in a human-readable format.
+   **Learning Objectives**
+   - Produce a README file that clearly documents the purpose, usage, functionality, variables, data structures, and control logic of a Python script in a human-readable format.
+   
+   **README Example:** Server Connectivity Monitor
+   
+   **Overview**\
+   This Python script checks whether specified servers are reachable over the network and logs the results to a file. It is designed to help system administrators quickly verify connectivity to important services.
+   
+   **Purpose**\
+   The script automates network connectivity checks for a list of servers. It attempts to connect to each server on a specified port and records whether the connection was successful.
+   
+   **Requirements**
+   - Python 3.x
+   - network access to the target servers
+   
+   **Usage**\
+   Run the script from the command line:\
+   `python connectivity_check.py`
+   
+   The script will attempt to connect to each server listed in the configuration section and display the results in the terminal.
+   
+   **Configuration**\
+   The following variables can be modified inside the script:
+   
+   | **Variable** | **Description** |
+   |--------------|-----------------|
+   | SERVERS      | List of server hostnames to check |
+   | PORT         | Port number used for the connection test |
+   | LOG_FILE     | File where connection results are stored |
+   
+   
+   **Example configuration in the script:**
+   
+   ```
+   SERVERS = ["google.com", "example.com"]
+   PORT = 80
+   LOG_FILE = "connectivity_log.txt"
+   ```
+   
+   **Output**\
+   The script prints the connection status for each server and writes the results to a log file.
+   
+   **Example output:**
+   ```
+   google.com: REACHABLE
+   example.com: UNREACHABLE
+   Example log entry:
+   2026-03-06T14:32:10 - google.com - REACHABLE
+   ```
+   
+   **Notes**\
+   This script is intended for basic connectivity verification and can be scheduled to run periodically using a task scheduler or cron job.
+   
 
-**README Example:** Server Connectivity Monitor
-
-**Overview**\
-This Python script checks whether specified servers are reachable over the network and logs the results to a file. It is designed to help system administrators quickly verify connectivity to important services.
-
-**Purpose**\
-The script automates network connectivity checks for a list of servers. It attempts to connect to each server on a specified port and records whether the connection was successful.
-
-**Requirements**
-- Python 3.x
-- network access to the target servers
-
-**Usage**\
-Run the script from the command line:\
-`python connectivity_check.py`\
-The script will attempt to connect to each server listed in the configuration section and display the results in the terminal.
-
-**Configuration**\
-The following variables can be modified inside the script:
-
-  | **Variable** | **Description** |
-  |--------------|-----------------|
-  | SERVERS      | List of server hostnames to check |
-  | PORT         | Port number used for the connection test |
-  | LOG_FILE     | File where connection results are stored |
-
-
-**Example configuration in the script:**
-```
-SERVERS = ["google.com", "example.com"]
-PORT = 80
-LOG_FILE = "connectivity_log.txt"
-```
-
-**Output**\
-The script prints the connection status for each server and writes the results to a log file.
-
-**Example output:**
-```
-google.com: REACHABLE
-example.com: UNREACHABLE
-Example log entry:
-2026-03-06T14:32:10 - google.com - REACHABLE
-```
-
-**Notes**\
-This script is intended for basic connectivity verification and can be scheduled to run periodically using a task scheduler or cron job.
-
-
-
+</details>
 
 
 
