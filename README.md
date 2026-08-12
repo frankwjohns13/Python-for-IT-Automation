@@ -693,6 +693,20 @@ A clear rule that a script can evaluate to determine whether an action should oc
 **Thresholds**\
 Define the point at which a system condition becomes significant enough to requie action.
 
+**Comparison Operators**
+
+  | **Operator** | **Purpose** | **Example** | **Meaning** |
+  |--------------|-------------|-------------|-------------|
+  | == | Equal to | if status == "running": | Checks if two values are the same |
+  | != | Not equal to | if service_status != "running": | Checks if two values are different |
+  | >	| Greater than | if disk_usage > MAX_DISK_USAGE: | True if the left value is larger than the right |
+  | < | Less than | if cpu_usage < MAX_CPU_USAGE: | True if the left value is smaller than the right |
+  | >= | Greater than or equal to | if retry_count >= MAX_RETRIES: | True if the value is greater than or equal to the limit |
+  | <= | Less than or equal to | if temperature <= SAFE_LIMIT: | True if the value is less than or equal to the threshold |
+
+
+**Logical Operators**\
+Python uses three main logical operator: and, or, not
 
 
 
