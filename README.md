@@ -6,6 +6,7 @@
 - **Constants:** named variables whose values are intended to remain unchanged during program execution, typically written in uppercase letters to indicate that they represent fixed configuration values
 - **Main Execution block:** the section of a Python script that contains the code that should run when the script is executed directly
 - **Clean Code:** Clean code is essential in automation because scripts often support operational workflows where reliability, readability, and maintainability are critical.
+- **Hard-coded:** Hard-coding occurs when you use values instead of variables. This makes updating difficult as every place that value is used has to be found and corrected if something changes.
 
 ---
 
@@ -81,7 +82,8 @@ for server in servers:
    else:
       print(f"{server} is offline")
 ```
-Notice how much easier it is to read when it has proper spacing.
+Notice how much easier it is to read when it has proper spacing. This makes updating, error checking, and troubleshooting easier.
+
 
 
 ---
@@ -90,6 +92,35 @@ Notice how much easier it is to read when it has proper spacing.
 
 **Learning Objectives**
 - Develop a Python script that demonstrates correct syntax, clean structure, meaningful variable handling, and appropriate inline documentation.
+
+**Hard-coded:** Hard-coding occurs when you use values instead of variables. This makes updating difficult as every place that value is used has to be found and corrected if something changes.
+
+---
+
+### Variable Naming:
+A good variable name describes the data it contains. Variable names must follow the following four rules:
+- Cannot have spaces
+- can use only letters, numbers, and underscores (_)
+- Cannot begin with a number
+- Cannot be a Python keyword, (if, for, return...)
+
+---
+
+### Effective Documentation
+Professional Python code contains documentation within the script. Clear documentation allows other coders to quickly understand what the code block is for. Documentation blocks start and end with triple quote marks. 
+```
+"""
+This code check which servers are up
+"""
+```
+
+
+
+
+
+**End Lesson 1**
+
+---
 
 
 
