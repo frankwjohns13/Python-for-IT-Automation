@@ -114,8 +114,112 @@ This code check which servers are up
 """
 ```
 
+---
 
+### Lesson 1 - Refactoring an Automation Script Practical
+**Overview**\
+In this task, you will take an existing Python script and refactor it.
 
+**What the Script Does**\
+The script simulates a simple monitoring task:
+- It contains a list of servers.
+- Each server has a hostname and a status ("up" or "down").
+- The script does the following:
+  - checks each server
+  - prints a message for each one
+  - displays an alert if a server is down
+  - displays a normal message if the server is operational
+
+**Task**\
+You will refactor the provided script to improve its structure, readability, and maintainability. You must not change what the script does, only how it is written.
+
+**Requirements**\
+Your refactored script must include the following components:
+
+**Clean Structure**
+- Use proper indentation.
+- Organize code into logical sections.
+- Avoid writing multiple statements on one line.
+
+**Meaningful Variable Names**
+- Replace unclear names.
+- Use descriptive names.
+
+**Constants for Configuration**
+- Replace hard-coded values with named constants.
+
+**Module Docstring**
+- At the top of your script, include a docstring that explains what the script does and what problem it solves.
+
+**Clear Inline Documentation**
+- Add comments to explain intent, not obvious code.
+
+**Proper Formatting and Syntax**
+- Follow consistent spacing.
+- Use readable formatting.
+- Ensure the script runs without syntax errors.
+
+**Use a Main Function**
+- Wrap your logic in a function.
+- Use the following:
+
+```
+if __name__ == "__main__":
+check_servers()
+```
+
+**What You Should Not Do**
+- Do not change the logic or output of the script.
+- Do not add new features.
+
+**Code to Refactor**
+```
+servers=[{"hostname":"web01","status":"up"},{"hostname":"db01","status":"down"},{"hostname":"app01","status":"up"},{"hostname":"dns01","status":"down"}]
+def x():
+   for s in servers:
+      h=s["hostname"];z=s["status"]
+      if z=="down":print(h+" is down")
+      else:print(h+" is operational")
+x()
+```
+
+**Solution** (One possible solution)
+```
+Correct code: 
+""" 
+Checks the status of servers and prints alerts for any server 
+that is down.
+
+This script iterates through a list of servers and reports 
+whether each server is operational or requires attention. 
+""" 
+DOWN_STATUS = "down"   """ Setting a constant variable to 'down' for status check later """
+
+""" Putting each server on its own line makes it clear to see what each one is """
+servers = [ 
+   {"hostname": "web01", "status": "up"}, 
+   {"hostname": "db01", "status": "down"}, 
+   {"hostname": "app01", "status": "up"}, 
+   {"hostname": "dns01", "status": "down"} 
+]
+
+""" This section defines the function we are creating """
+def check_servers(): 
+"""Check each server and print its status.""" 
+   for server in servers: 
+      hostname = server["hostname"] 
+      status = server["status"] 
+
+      # Determine if the server is down 
+      if status == DOWN_STATUS: 
+         print(f"ALERT: {hostname} is down") 
+      else: 
+         print(f"{hostname} is operational")
+
+if __name__ == "__main__": 
+   check_servers() """ This calls the previously declared function. """
+
+```
 
 
 **End Lesson 1**
