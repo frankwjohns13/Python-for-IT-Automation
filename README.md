@@ -93,7 +93,25 @@ Notice how much easier it is to read when it has proper spacing. This makes upda
 
 ---
 
-<details><summary><strong>Lesson 1</strong></summary>
+<!-- THIS BEGINS SECTION 1 -->
+
+<details><summary><strong>Section 1 - Python Principles and Syntax</strong></summary>
+
+---
+
+
+
+
+
+<!-- 
+      *******************************
+      THIS BEGINS SECTION 1: LESSON 1 
+      *******************************
+-->
+
+
+
+   <details><summary><strong>Lesson 1 - Clean and Well-Documented Scripts</strong></summary>
 
    **Learning Objectives**
    - Develop a Python script that demonstrates correct syntax, clean structure, meaningful variable handling, and appropriate inline documentation.
@@ -202,6 +220,16 @@ Notice how much easier it is to read when it has proper spacing. This makes upda
          else:print(h+" is operational")
    x()
    ```
+
+   
+   
+   <!--
+   **********************
+         Solution 
+   **********************
+   -->
+
+   
    
    <details><summary><strong>Solution (One possible solution)</strong></summary>
    
@@ -242,15 +270,30 @@ Notice how much easier it is to read when it has proper spacing. This makes upda
    
       ```
       
-   </details>
+   </details> <!-- Ends Solution -->
    
    **End Lesson 1**
 
-</details>
+</details> <!-- Ends Section 1: Lesson 1 -->
 
 ---
 
-<details><summary><strong>Lesson 2</strong></summary>
+
+
+
+
+
+
+<!-- 
+      *******************************
+      THIS BEGINS SECTION 1: LESSON 2 
+      *******************************
+-->
+
+
+
+
+<details><summary><strong>Lesson 2 - README Files</strong></summary>
 
    **Learning Objectives**
    - Produce a README file that clearly documents the purpose, usage, functionality, variables, data structures, and control logic of a Python script in a human-readable format.
@@ -380,6 +423,12 @@ Notice how much easier it is to read when it has proper spacing. This makes upda
    ```
 
    ---
+
+   <!--
+   **********************
+         Solution 
+   **********************
+   -->
    
   <details><summary><strong>Solution</strong></summary>
    
@@ -437,9 +486,118 @@ Notice how much easier it is to read when it has proper spacing. This makes upda
    dns01 is operational
    ```
    
-   </details>
+   </details> <!-- Ends Solution -->
 
-</details>
+   ---
+   
+   **End Lesson 2**
+
+   ---
+
+   **End Section 1**
+   
+   
+   </details> <!-- Ends Section 1: Lesson 2 -->
+   
+   
+</details> <!-- Ends Section 1 -->
+
+---
+
+
+
+
+
+
+
+
+
+<!-- 
+      *******************************
+      THIS BEGINS SECTION 2 
+      *******************************
+-->
+
+
+<details><summary><strong>Section 2 - Create Python Scripts</strong></summary>
+
+---
+
+
+
+
+<!-- 
+      *******************************
+      THIS BEGINS SECTION 2: LESSON 1 
+      *******************************
+-->
+
+
+
+
+<details><summary><strong>Lesson 1 - Using Conditional Logic to Automate System Monitoring</strong></summary>
+
+
+
+
+
+</details> <!-- Ends Section 2: Lesson 1 -->
+
+---
+
+
+
+
+<!-- 
+      *******************************
+      THIS BEGINS SECTION 2: LESSON 2 
+      *******************************
+-->
+
+
+<details><summary><strong>Lesson 2 - Reading and Writing Files</strong></summary>
+
+
+
+
+
+
+
+
+</details> <!-- Ends Section 2: Lesson 2 -->
+
+
+---
+
+
+
+
+
+<!-- 
+      *******************************
+      THIS BEGINS SECTION 2: LESSON 3 
+      *******************************
+-->
+
+
+<details><summary><strong>Lesson 3 - Organizing Files and Folders</strong></summary>
+
+
+
+
+
+
+
+
+</details> <!-- Ends Section 2: Lesson 3 -->
+
+
+
+
+
+
+
+</details> <!-- Ends Section 2 -->
 
 ---
 
@@ -452,9 +610,34 @@ Notice how much easier it is to read when it has proper spacing. This makes upda
 
 
 
+<!-- 
+      *******************************
+      THIS BEGINS SECTION 3 
+      *******************************
+-->
+
+<details><summary><strong>Section 3 - Integrate Python Modules</strong></summary>
+
+
+<!-- 
+      *******************************
+      THIS BEGINS SECTION 3: LESSON 1 
+      *******************************
+-->
+
+
+<!-- 
+      *******************************
+      THIS BEGINS SECTION 3: LESSON 2 
+      *******************************
+-->
 
 
 
+
+</details> <!-- Ends Section 3 -->
+
+---
 
 
 <!-- End of File -->
