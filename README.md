@@ -7,6 +7,8 @@
 - **Main Execution block:** the section of a Python script that contains the code that should run when the script is executed directly
 - **Clean Code:** Clean code is essential in automation because scripts often support operational workflows where reliability, readability, and maintainability are critical.
 - **Hard-coded:** Hard-coding occurs when you use values instead of variables. This makes updating difficult as every place that value is used has to be found and corrected if something changes.
+- **README:** Is a document that explains how a piece of software or script works.
+- **cron:** Unix or Linux scheduling tool that automates recurring commands or scripts at specified times
 
 ---
 
@@ -183,48 +185,115 @@ def x():
 x()
 ```
 
-**Solution** (One possible solution)
+<details><summary><strong>Solution (One possible solution)</strong></summary>
+
+   ```
+   Correct code: 
+   """ 
+   Checks the status of servers and prints alerts for any server 
+   that is down.
+
+   This script iterates through a list of servers and reports 
+   whether each server is operational or requires attention. 
+   """ 
+   DOWN_STATUS = "down"   """ Setting a constant variable to 'down' for status check later """
+
+   """ Putting each server on its own line makes it clear to see what each one is """
+   servers = [ 
+      {"hostname": "web01", "status": "up"}, 
+      {"hostname": "db01", "status": "down"}, 
+      {"hostname": "app01", "status": "up"}, 
+      {"hostname": "dns01", "status": "down"} 
+   ]
+
+   """ This section defines the function we are creating """
+   def Check_servers_status(): 
+   """Check each server and print its status.""" 
+      for server in servers: 
+         hostname = server["hostname"] 
+         status = server["status"] 
+   
+         # Determine if the server is down 
+         if status == DOWN_STATUS: 
+            print(f"ALERT: {hostname} is down") 
+         else: 
+            print(f"{hostname} is operational")
+   
+   if __name__ == "__main__": 
+      Check_servers_status() """ This calls the previously declared function. """
+
 ```
-Correct code: 
-""" 
-Checks the status of servers and prints alerts for any server 
-that is down.
-
-This script iterates through a list of servers and reports 
-whether each server is operational or requires attention. 
-""" 
-DOWN_STATUS = "down"   """ Setting a constant variable to 'down' for status check later """
-
-""" Putting each server on its own line makes it clear to see what each one is """
-servers = [ 
-   {"hostname": "web01", "status": "up"}, 
-   {"hostname": "db01", "status": "down"}, 
-   {"hostname": "app01", "status": "up"}, 
-   {"hostname": "dns01", "status": "down"} 
-]
-
-""" This section defines the function we are creating """
-def check_servers(): 
-"""Check each server and print its status.""" 
-   for server in servers: 
-      hostname = server["hostname"] 
-      status = server["status"] 
-
-      # Determine if the server is down 
-      if status == DOWN_STATUS: 
-         print(f"ALERT: {hostname} is down") 
-      else: 
-         print(f"{hostname} is operational")
-
-if __name__ == "__main__": 
-   check_servers() """ This calls the previously declared function. """
-
-```
-
+</details>
 
 **End Lesson 1**
 
 ---
 
+## Lesson 2
+
+**Learning Objectives**
+- Produce a README file that clearly documents the purpose, usage, functionality, variables, data structures, and control logic of a Python script in a human-readable format.
+
+**README Example:** Server Connectivity Monitor
+
+**Overview**\
+This Python script checks whether specified servers are reachable over the network and logs the results to a file. It is designed to help system administrators quickly verify connectivity to important services.
+
+**Purpose**\
+The script automates network connectivity checks for a list of servers. It attempts to connect to each server on a specified port and records whether the connection was successful.
+
+**Requirements**
+- Python 3.x
+- network access to the target servers
+
+**Usage**\
+Run the script from the command line:\
+`python connectivity_check.py`\
+The script will attempt to connect to each server listed in the configuration section and display the results in the terminal.
+
+**Configuration**\
+The following variables can be modified inside the script:
+
+  | **Variable** | **Description** |
+  |--------------|-----------------|
+  | SERVERS      | List of server hostnames to check |
+  | PORT         | Port number used for the connection test |
+  | LOG_FILE     | File where connection results are stored |
+
+
+**Example configuration in the script:**
+```
+SERVERS = ["google.com", "example.com"]
+PORT = 80
+LOG_FILE = "connectivity_log.txt"
+```
+
+**Output**\
+The script prints the connection status for each server and writes the results to a log file.
+
+**Example output:**
+```
+google.com: REACHABLE
+example.com: UNREACHABLE
+Example log entry:
+2026-03-06T14:32:10 - google.com - REACHABLE
+```
+
+**Notes**\
+This script is intended for basic connectivity verification and can be scheduled to run periodically using a task scheduler or cron job.
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- End of File -->
 
 
