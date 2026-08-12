@@ -10,8 +10,23 @@
    - **Hard-coded:** Hard-coding occurs when you use values instead of variables. This makes updating difficult as every place that value is used has to be found and corrected if something changes.
    - **README:** Is a document that explains how a piece of software or script works.
    - **cron:** Unix or Linux scheduling tool that automates recurring commands or scripts at specified times
+   - **Conditional Logic:** Allows a program to make decisions and execute different code based on whether a condition is true or false.
+   - **Monitoring:** Collecting information about the system.
+   - **Evaluating:** Compare data against a predefined set of rules.
+   - **Acting:** Performing a task.
+   - **Triggers:** Condition or event that causes a specific block of code to execute.
+   - **Magic Numbers:** Numeric values written directly into code without explanation or context.
+   - **Measurable Condition:** Defines a clear rule that a script can evaluate to determine whether an action should occur.
+   - **Threshold:** Predefined value that determines when a condition triggers a specific action.
+   - **Nested Logic:** Multiple conditional statements are placed inside one another repeatedly, creating several layers of indentation. 
 
-</details>
+
+
+
+
+
+
+</details> <!-- Ends Key Terms -->
 
 ---
 
@@ -89,7 +104,63 @@ for server in servers:
 ```
 Notice how much easier it is to read when it has proper spacing. This makes updating, error checking, and troubleshooting easier.
 
-</details>
+
+**Conditional Logic**
+```
+MAX_CPU_USAGE = 85
+
+cpu_usage = 92 # Simulated CPU usage value, in a real time environment you would have a function to get the actual CPU usage at the time.
+
+if cpu_usage > MAX_CPU_USAGE:
+   print("ALERT: CPU usage is too high.")
+   print(f"Current CPU usage: {cpu_usage}%")
+else:
+   print("CPU usage is within acceptable limits.")
+   print(f"Current CPU usage: {cpu_usage}%")
+```
+
+**Match/Case**
+```
+command = "start" # This would come from an input statement asking what you want to do. 
+
+match command:
+   case "start":
+      print("Starting system")
+   case "stop":
+      print("Stopping system")
+   case _:
+      print("Unknown command")
+```
+
+**Monitoring, Evaluating, Acting
+```
+MAX_FAILED_LOGINS = 5
+
+failed_login_attempts = 7 # Simulated monitoring value
+
+# Monitoring
+print("Checking failed login attempts...")
+
+# Evaluating
+if failed_login_attempts > MAX_FAILED_LOGINS:
+   # Acting
+   print("ALERT: Too many failed login attempts detected.")
+else:
+   # Acting
+   print("Login activity is within acceptable limits.")
+```
+
+
+
+
+
+
+
+
+
+
+
+</details> <!-- Ends Code Snippets -->
 
 ---
 
@@ -546,6 +617,89 @@ To prepare for the assessment ask yourself these questions:
 
 
 <details><summary><strong>Lesson 1 - Using Conditional Logic to Automate System Monitoring</strong></summary>
+
+**Learning Objectives**\
+This lesson addresses the following learning objective:
+- Write a Python script that uses conditional logic to monitor defined system conditions and trigger automated alerts or actions based on specified criteria.
+
+**Conditional Statements**
+
+Conditional statements allow automated systems to perform different actions based on system conditions.
+
+There are three key steps in the workflow process:
+- Monitoring
+- Evaluating
+- Acting
+
+**Monitoring** involves constantly checking the various system conditions and reading their current values.
+
+**Evaluating** takes those values and compares them to expected results. 
+
+**Acting** allows the script to make decisions based on how the current values compare to the expected value. 
+
+```
+MAX_FAILED_LOGINS = 5
+
+failed_login_attempts = 7 # Simulated monitoring value
+
+# Monitoring
+print("Checking failed login attempts...")
+
+# Evaluating
+if failed_login_attempts > MAX_FAILED_LOGINS:
+   # Acting
+   print("ALERT: Too many failed login attempts detected.")
+else:
+   # Acting
+   print("Login activity is within acceptable limits.")
+```
+
+**Triggers**
+
+  | **IT Trigger** | **Condition Being Checked** | **Example Automated Action** |
+  |----------------|-----------------------------|------------------------------|
+  | Disk usage threshold exceeded | Disk usage percentage is greater than a defined limit (e.g., >85% | Attempt to restart the service or notify an administrator |
+  | Service down | A required system service is not running. | Attempt to restart the service or notify an administrator. |
+  | File exceeds size limit | A file grows larger than a configured maximum size. | Archive the file, compress it, or delete old logs. |
+  | Failed log-in count exceeds threshold | The number of failed log-in attempts exceeds a defined limit. | Log the event, send a security alert, or temporarily lock the account. |
+  | High CPU usage | CPU utilization exceeds a defined threshold. | Log the event or trigger a scaling or restart action. |
+  | Network connectivity failure | A server or device cannot be reached over the network. | Generate an alert or retry the connection. |
+
+
+**Magic Numbers**\
+Numeric values written directly into code without explanation or context.
+
+**For Example:**
+```
+if disk_usage > 85:
+   print("ALERT: Disk usage too high")
+```
+**Cleaner Approach**
+```
+MAX_DISK_USAGE_PERCENT = 85
+
+if disk_usage > MAX_DISK_USAGE_PERCENT:
+   print("ALERT: Disk usage too high")
+```
+
+**Measurable Conditions**\
+A clear rule that a script can evaluate to determine whether an action should occur.
+
+**Steps in designing measurable conditions:**
+1) Identifying a quantifiable system metric.
+2) Define a threshold value.
+
+
+**Thresholds**\
+Define the point at which a system condition becomes significant enough to requie action.
+
+
+
+
+
+
+
+
 
 
 
