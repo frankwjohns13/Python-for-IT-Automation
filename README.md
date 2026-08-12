@@ -99,8 +99,12 @@ Notice how much easier it is to read when it has proper spacing. This makes upda
 
 ---
 
+**Prepare for the Assessment**\
+To prepare for the assessment, ask yourself these questions:
+- Can I write clean, well-documented code within Python scripts, demonstrating correct syntax and basic variable handling?
+- Can I create a README file that clearly documents the purpose, usage, and functionality of Python modules and scripts in a human-readable format, including descriptions of variables, data structures, and operators used?
 
-
+---
 
 
 <!-- 
