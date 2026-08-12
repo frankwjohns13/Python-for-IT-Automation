@@ -12,6 +12,7 @@
    - **cron:** Unix or Linux scheduling tool that automates recurring commands or scripts at specified times
 
 </details>
+
 ---
 
 <details><summary><strong>Code Snippets (I will add example code here)</summary>
