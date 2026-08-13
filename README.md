@@ -375,132 +375,94 @@ if server_reachable and disk_usage > CRITICAL_THRESHOLD and not service_running:
 
 <details>
 <summary><strong>Lesson 2 - README Files</strong></summary>
-
    **Learning Objectives**
    - Produce a README file that clearly documents the purpose, usage, functionality, variables, data structures, and control logic of a Python script in a human-readable format.
    
-   **README Example:** Server Connectivity Monitor
-   
-   **Overview**\
-   This Python script checks whether specified servers are reachable over the network and logs the results to a file. It is designed to help system administrators quickly verify connectivity to important services.
-   
-   **Purpose**\
-   The script automates network connectivity checks for a list of servers. It attempts to connect to each server on a specified port and records whether the connection was successful.
-   
-   **Requirements**
-   - Python 3.x
-   - network access to the target servers
-   
-   **Usage**\
-   Run the script from the command line:\
-   `python connectivity_check.py`
-   
-   The script will attempt to connect to each server listed in the configuration section and display the results in the terminal.
-   
-   **Configuration**\
-   The following variables can be modified inside the script:
-   
-   | **Variable** | **Description** |
-   |--------------|-----------------|
-   | SERVERS      | List of server hostnames to check |
-   | PORT         | Port number used for the connection test |
-   | LOG_FILE     | File where connection results are stored |
-   
-   
-   **Example configuration in the script:**
-   
-   ```
-   SERVERS = ["google.com", "example.com"]
-   PORT = 80
-   LOG_FILE = "connectivity_log.txt"
-   ```
-   
-   **Output**\
-   The script prints the connection status for each server and writes the results to a log file.
-   
-   **Example output:**
-   ```
-   google.com: REACHABLE
-   example.com: UNREACHABLE
-   Example log entry:
-   2026-03-06T14:32:10 - google.com - REACHABLE
-   ```
-   
-   **Notes**\
-   This script is intended for basic connectivity verification and can be scheduled to run periodically using a task scheduler or cron job.
-
    ---
    
-   **Task**\
-   Write a README file for the provided script.
-
-   Your README must do the following:
-   - Clearly explain the purpose.
-   - Document usage correctly.
-   - Describe the configuration variables.
-   - Explain the data structures used.
-   - Summarize the control logic.
-   - Include example execution and output.
-   - Use clear formatting.
-   - Be understandable without reading the script.
+   ### What is a README?
    
-   **Overview**\
-   You will create a README file for a provided Python automation script. Your README should explain the script clearly enough that another person can understand what the script does and how to use it without opening         the source code.
-
-   **What the Script Does**\
-   The provided script checks the status of several servers and prints a message for each one.
-
-   Depending on the server's status, the script will perform the following:
-   - Print a normal message if the server is operational.
-   - Print a warning if the server needs attention.
-   - Print an alert if the server is down.
-
-   Your README should explain this behavior clearly.
+   A **README** is a document that explains how a script or piece of software works.\
+   It should allow another person to understand the purpose and usage of the script **without reading the source code**.
    
-   **Required Sections**\
-   Your README must include these sections:
+   ---
+
+   ### README Example Structure
+
+   A good README usually includes:
    - Project Title
-   - Purpose/Overview
+   - Purpose / Overview
    - Usage Instructions
    - Configuration Variables
    - Data Structures
    - Logic Overview
-   - Example Execution/Output
+   - Example Execution / Output
+   
+   ---
 
-   ```
-   Automation Script
+   ### Practical Task
+
+   **Overview**  
+   You will create a README file for a provided Python automation script.  
+   Your README should clearly explain what the script does and how to use it.
+   
+   **What the Script Does**
+   - Checks the status of several servers
+   - Prints a normal message if the server is operational
+   - Prints a warning if the server needs attention
+   - Prints an alert if the server is down
+   
+   ---
+   
+   ### Required Sections
+   
+   Your README must include the following:
+   
+   - **Project Title**
+   - **Purpose / Overview**
+   - **Usage Instructions**
+   - **Configuration Variables**
+   - **Data Structures**
+   - **Logic Overview**
+   - **Example Execution / Output**
+   
+   ---
+
+   ### Script to Document
+   
+   ```python
    """
    Monitors server status values and reports whether each server is operational.
    
    This script checks a list of servers and prints either an alert message
    or a normal status message based on each server's current condition.
    """
+   
    DOWN_STATUS = "down"
    WARNING_STATUS = "warning"
    
    servers = [
-      {"hostname": "web01", "status": "up"},
-      {"hostname": "db01", "status": "down"},
-      {"hostname": "app01", "status": "warning"},
-      {"hostname": "dns01", "status": "up"}
+       {"hostname": "web01", "status": "up"},
+       {"hostname": "db01", "status": "down"},
+       {"hostname": "app01", "status": "warning"},
+       {"hostname": "dns01", "status": "up"}
    ]
    
    def check_servers():
-      """Check each server and print a message based on its status."""
-      for server in servers:
-         hostname = server["hostname"]
-         status = server["status"]
+       """Check each server and print a message based on its status."""
+       for server in servers:
+           hostname = server["hostname"]
+           status = server["status"]
    
-         if status == DOWN_STATUS:
-           print(f"ALERT: {hostname} is down")
-         elif status == WARNING_STATUS:
-           print(f"WARNING: {hostname} needs attention")
-         else:
-           print(f"{hostname} is operational")
+           if status == DOWN_STATUS:
+               print(f"ALERT: {hostname} is down")
+           elif status == WARNING_STATUS:
+               print(f"WARNING: {hostname} needs attention")
+           else:
+               print(f"{hostname} is operational")
    
    if __name__ == "__main__":
-      check_servers()
-
+       check_servers()
    ```
 
    ---
@@ -511,53 +473,63 @@ if server_reachable and disk_usage > CRITICAL_THRESHOLD and not service_running:
    **********************
    -->
    
-  <details><summary><strong>Solution</strong></summary>
+   <details>
+   <summary><strong>Solution</strong></summary>
    
-   ## Applied Practice S1L2
-   **Server Status Monitor**
+  **Server Status Monitor**
+
+  **Purpose / Overview**\
+  This Python script monitors the status of a small group of servers and prints a message for each one.\
+  It simulates a basic system monitoring task by checking whether a server is operational, in a warning state, or down.
+
+  ---
   
-   **Purpose / Overview**\
-   This Python script monitors the status of a small group of servers and prints a message for each one. It is designed to 
-   simulate a basic system monitoring task by checking whether a server is operational, in a warning state, or down.\
-   The script helps demonstrate how conditional logic can be used to evaluate system conditions and produce appropriate 
-   output. 
-   
-   **Usage Instructions**
-   Run the script in Python:
-   python server_status_monitor.py
-   When the script runs, it checks each server in the list and prints a message based on its status. 
-   
-   **Configuration Variables**
+  **Usage Instructions**
+  Run the script bash:
+  ```Bash
+  python server_status_monitor.py
+  ```
+  When the script runs, it checks each server in the list and prints a message based on its status.
+
+  ---
+  
+  **Configuration Variables**
    
    | **Variable** | **Type** | **Description** |
    |:-------------|:--------:|:----------------|
    | DOWN_STATUS  | string   | The status value that indicates a server is down |
    | WARNING_STATUS | string | The status value that indicates a server needs attention |
    | servers | list | A list of dictionaries containing server names and status values |
+
+   ---
    
    **Data Structures**\
    The script uses a list of dictionaries to store server information. 
    - The list stores multiple server records.
    - Each dictionary represents one server.
    - Each server dictionary contains:
-     - hostname: the name of the server
-     - status: the current status of the server 
+     - `hostname` → the name of the server
+     - `status` → the current status of the server 
    
    **Example:**
-   `{"hostname": "web01", "status": "up"} `\
-   This structure makes it easy to loop through all servers and evaluate each one individually. 
-      
+   `{"hostname": "web01", "status": "up"}`
+
+   ---
+         
    **Logic Overview**\
-   The script uses a for loop to iterate through the list of servers. For each server, it checks the value of the status field. 
-   - If the status is equal to DOWN_STATUS, the script prints an alert.
-   - If the status is equal to WARNING_STATUS, the script prints a warning.
-   - Otherwise, the script prints that the server is operational. 
-   This decision-making is controlled with if, elif, and else statements. 
+   The script uses a `for` loop to iterate through the list of servers.\
+   For each server, it evaluates the `status` value: 
+   - If the status equals `DOWN_STATUS` → print an alert
+   - If the status equals `WARNING_STATUS` → print a warning
+   - Otherwise → print that the server is operational
+   This decision-making is controlled with `if`, `elif`, and `else` statements. 
    
    **Example Execution / Output**
    
-   **Example command**\
-   `python server_status_monitor.py `
+   **Command:**
+   ```Bash
+   python server_status_monitor.py
+   ```
    
    **Example output**
    ```
@@ -568,8 +540,6 @@ if server_reachable and disk_usage > CRITICAL_THRESHOLD and not service_running:
    ```
    
    </details> <!-- Ends Solution -->
-
-   ---
    
    **End Lesson 2**
 
