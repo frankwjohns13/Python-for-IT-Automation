@@ -35,7 +35,7 @@
 <details><summary><strong>Code Snippets (I will add example code here)</summary>
 
 **Module Docstring** 
-```
+```python
 """
 Network connectivity monitor.
 
@@ -45,14 +45,13 @@ and logs the results to a file.
 ```
 
 **Import Statements** 
-```
+```python
 import socket
 from datetime import datetime
 ```
 
-
 **Constants**
-```
+```python
 SERVERS = ["google.com", "example.com", "github.com"]
 PORT = 80
 TIMEOUT = 5
@@ -60,7 +59,7 @@ LOG_FILE = "connectivity_log.txt"
 ```
 
 **Main Execution Block**
-```
+```python
 def main():
    """Main workflow for checking servers."""
    for server in SERVERS:
@@ -73,7 +72,7 @@ def main():
 ```
 
 **Messy Code**
-```
+```python
 import os,sys
 servers=["server1","server2","server3"]
 for s in servers:
@@ -85,7 +84,7 @@ for s in servers:
 ```
 
 **Clean Code**
-```
+```python
 import os
 import sys
 
@@ -108,7 +107,7 @@ Notice how much easier it is to read when it has proper spacing. This makes upda
 
 
 **Conditional Logic**
-```
+```python
 MAX_CPU_USAGE = 85
 
 cpu_usage = 92 # Simulated CPU usage value, in a real time environment you would have a function to get the actual CPU usage at the time.
@@ -122,7 +121,7 @@ else:
 ```
 
 **Match/Case**
-```
+```python
 command = "start" # This would come from an input statement asking what you want to do. 
 
 match command:
@@ -135,7 +134,7 @@ match command:
 ```
 
 **Monitoring, Evaluating, Acting
-```
+```python
 MAX_FAILED_LOGINS = 5
 
 failed_login_attempts = 7 # Simulated monitoring value
@@ -153,7 +152,7 @@ else:
 ```
 
 **Deeply Nested Logic**
-```
+```python
 CRITICAL_THRESHOLD = 90
 server_reachable = True
 disk_usage = 92
@@ -166,7 +165,7 @@ if server_reachable:
 ```
 
 **Clearer Alternative**
-```
+```python
 CRITICAL_THRESHOLD = 90
 server_reachable = True
 disk_usage = 92
@@ -191,14 +190,8 @@ if server_reachable and disk_usage > CRITICAL_THRESHOLD and not service_running:
 
 <!-- THIS BEGINS SECTION 1 -->
 
-<details><summary><strong>Section 1 - Python Principles and Syntax</strong></summary>
-
----
-
-**Prepare for the Assessment**\
-To prepare for the assessment, ask yourself these questions:
-- Can I write clean, well-documented code within Python scripts, demonstrating correct syntax and basic variable handling?
-- Can I create a README file that clearly documents the purpose, usage, and functionality of Python modules and scripts in a human-readable format, including descriptions of variables, data structures, and operators used?
+<details>
+<summary><strong>Section 1 - Python Principles and Syntax</strong></summary>
 
 ---
 
@@ -211,107 +204,97 @@ To prepare for the assessment, ask yourself these questions:
 
 
 
-   <details><summary><strong>Lesson 1 - Clean and Well-Documented Scripts</strong></summary>
+   <details>
+   <summary><strong>Lesson 1 - Clean and Well-Documented Scripts</strong></summary>
 
    **Learning Objectives**
    - Develop a Python script that demonstrates correct syntax, clean structure, meaningful variable handling, and appropriate inline documentation.
+
+   ---
    
-   **Hard-coded:** Hard-coding occurs when you use values instead of variables. This makes updating difficult as every place that value is used has to be found and corrected if something changes.
+   ### Hard-Coded Values
+   
+   Hard-coding occurs when you use fixed values directly in the code instead of variables.\
+   This makes the script harder to update because every occurrence of that value must be found and changed manually.
    
    ---
    
-   ### Variable Naming:
-   A good variable name describes the data it contains. Variable names must follow the following four rules:
-   - Cannot have spaces
-   - can use only letters, numbers, and underscores (_)
+   ### Variable Naming Rules
+   
+   A good variable name clearly describes the data it holds.
+   
+   Rules for naming variables:
+   - Cannot contain spaces
+   - Can only use letters, numbers, and underscores (`_`)
    - Cannot begin with a number
-   - Cannot be a Python keyword, (if, for, return...)
+   - Cannot be a Python keyword (`if`, `for`, `return`, etc.)
    
    ---
    
    ### Effective Documentation
-   Professional Python code contains documentation within the script. Clear documentation allows other coders to quickly understand what the code block is for. Documentation blocks start and end with triple quote marks. 
-   ```
-   """
-   This code check which servers are up
-   """
-   ```
    
+   Professional Python scripts include documentation that explains what the code does.
+   
+   Documentation blocks start and end with triple quotes:
+   
+   ```python
+   """
+   This script checks which servers are currently up.
+   """
+   ```
+  
    ---
    
-   ### Lesson 1 - Refactoring an Automation Script Practical
-   **Overview**\
-   In this task, you will take an existing Python script and refactor it.
+  ### Lesson 1 - Refactoring an Automation Script Practical
+  
+  **Overview**\
+  In this task, you will take an existing Python script and refactor it to improve readability and maintainability without changing what it does.
    
-   **What the Script Does**\
-   The script simulates a simple monitoring task:
-   - It contains a list of servers.
-   - Each server has a hostname and a status ("up" or "down").
-   - The script does the following:
-     - checks each server
-     - prints a message for each one
-     - displays an alert if a server is down
-     - displays a normal message if the server is operational
+  **What the Script Does**\
+  - Contains a list of servers.
+  - Each server has a hostname and a status ("up" or "down").
+  - Checks each server and prints:
+    - An alert if the server is down
+    - A normal message if the server is operational
 
    ---
-   
-   **Task**\
-   You will refactor the provided script to improve its structure, readability, and maintainability. You must not change what the script does, only how it is written.
-   
-   **Overview**\
-   You will refactor the provided script to improve its structure, readability, and maintainability. You must not change what the script does, only how it is written.
-
-   **What the Script Does**\
-   The script simulates a simple monitoring task:
-   - It contains a list of servers.
-   - Each server has a hostname and a status ("up" or "down").
-   - The script does the following:
-     - checks each server
-     - prints a message for each one
-     - displays an alert if a server is down
-     - displays a normal message if the server is operational
-   
+     
    **Requirements**\
-   Your refactored script must include the following components:
+   Your refactored script must include:
    
    **Clean Structure**
-   - Use proper indentation.
-   - Organize code into logical sections.
-   - Avoid writing multiple statements on one line.
+   - Proper indentation.
+   - Logical organization
+   - One statement per line
    
    **Meaningful Variable Names**
-   - Replace unclear names.
-   - Use descriptive names.
+   - Replace unclear names with descriptive ones.
    
    **Constants for Configuration**
    - Replace hard-coded values with named constants.
    
    **Module Docstring**
-   - At the top of your script, include a docstring that explains what the script does and what problem it solves.
+   - Include a docstring at the top explaining the purpose of the script
    
    **Clear Inline Documentation**
-   - Add comments to explain intent, not obvious code.
+   - Add comments that explain intent (not obvious code)
    
-   **Proper Formatting and Syntax**
-   - Follow consistent spacing.
-   - Use readable formatting.
-   - Ensure the script runs without syntax errors.
+   **Proper Formatting**
+   - Consistent spacing
+   - Readable layout
+   - No syntax errors
    
    **Use a Main Function**
    - Wrap your logic in a function.
    - Use the following:
    
-   ```
+   ```Python
    if __name__ == "__main__":
-   check_servers()
+      check_servers()
    ```
-   
-   **What You Should Not Do**
-   - Do not change the logic or output of the script.
-   - Do not add new features.
    
    **Code to Refactor**
-   ```
+   ```Python
    servers=[{"hostname":"web01","status":"up"},{"hostname":"db01","status":"down"},{"hostname":"app01","status":"up"},{"hostname":"dns01","status":"down"}]
    def x():
       for s in servers:
@@ -331,45 +314,40 @@ To prepare for the assessment, ask yourself these questions:
 
    
    
-   <details><summary><strong>Solution (One possible solution)</strong></summary>
-   
-      ```
-      Correct code: 
-      """ 
-      Checks the status of servers and prints alerts for any server 
-      that is down.
-   
-      This script iterates through a list of servers and reports 
-      whether each server is operational or requires attention. 
-      """ 
-      DOWN_STATUS = "down"   """ Setting a constant variable to 'down' for status check later """
-   
-      """ Putting each server on its own line makes it clear to see what each one is """
-      servers = [ 
-         {"hostname": "web01", "status": "up"}, 
-         {"hostname": "db01", "status": "down"}, 
-         {"hostname": "app01", "status": "up"}, 
-         {"hostname": "dns01", "status": "down"} 
-      ]
-   
-      """ This section defines the function we are creating """
-      def Check_servers_status(): 
-      """Check each server and print its status.""" 
-         for server in servers: 
-            hostname = server["hostname"] 
-            status = server["status"] 
-      
-            # Determine if the server is down 
-            if status == DOWN_STATUS: 
-               print(f"ALERT: {hostname} is down") 
-            else: 
-               print(f"{hostname} is operational")
-      
-      if __name__ == "__main__": 
-         Check_servers_status() """ This calls the previously declared function. """
-   
-      ```
-      
+   <details>
+   <summary><strong>Solution (One possible solution)</strong></summary>
+
+   ```Python
+   """
+   Checks the status of servers and prints alerts for any server that is down.
+
+   This script iterates through a list of servers and reports whether each server is operational or requires attention.
+   """
+
+   DOWN_STATUS = "down"
+
+   servers = [
+    {"hostname": "web01", "status": "up"},
+    {"hostname": "db01", "status": "down"},
+    {"hostname": "app01", "status": "up"},
+    {"hostname": "dns01", "status": "down"}
+   ]
+
+   def check_servers_status():
+    """Check each server and print its status."""
+    for server in servers:
+        hostname = server["hostname"]
+        status = server["status"]
+
+        if status == DOWN_STATUS:
+            print(f"ALERT: {hostname} is down")
+        else:
+            print(f"{hostname} is operational")
+
+   if __name__ == "__main__":
+      check_servers_status()
+   ```
+     
    </details> <!-- Ends Solution -->
    
    **End Lesson 1**
@@ -393,7 +371,10 @@ To prepare for the assessment, ask yourself these questions:
 
 
 
-<details><summary><strong>Lesson 2 - README Files</strong></summary>
+
+
+<details>
+<summary><strong>Lesson 2 - README Files</strong></summary>
 
    **Learning Objectives**
    - Produce a README file that clearly documents the purpose, usage, functionality, variables, data structures, and control logic of a Python script in a human-readable format.
