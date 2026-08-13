@@ -18,7 +18,9 @@
    - **Magic Numbers:** Numeric values written directly into code without explanation or context.
    - **Measurable Condition:** Defines a clear rule that a script can evaluate to determine whether an action should occur.
    - **Threshold:** Predefined value that determines when a condition triggers a specific action.
-   - **Nested Logic:** Multiple conditional statements are placed inside one another repeatedly, creating several layers of indentation. 
+   - **Nested Logic:** Multiple conditional statements are placed inside one another repeatedly, creating several layers of indentation.
+   - **Alert:** Notification that indicates a condition has occurred
+   - **Action:** Automated response that attempts to resolve or manage a condition
 
 
 
@@ -150,6 +152,29 @@ else:
    print("Login activity is within acceptable limits.")
 ```
 
+**Deeply Nested Logic**
+```
+CRITICAL_THRESHOLD = 90
+server_reachable = True
+disk_usage = 92
+service_running = False
+
+if server_reachable:
+   if disk_usage > CRITICAL_THRESHOLD:
+      if not service_running:
+        print("Alert: Server reachable, disk usage high, and service is down.")
+```
+
+**Clearer Alternative**
+```
+CRITICAL_THRESHOLD = 90
+server_reachable = True
+disk_usage = 92
+service_running = False
+
+if server_reachable and disk_usage > CRITICAL_THRESHOLD and not service_running:
+   print("Alert: Server reachable, disk usage high, and service is down.")
+```
 
 
 
@@ -707,6 +732,108 @@ Define the point at which a system condition becomes significant enough to requi
 
 **Logical Operators**\
 Python uses three main logical operator: and, or, not
+
+| **Logical Operator** | **Purpose** | **Example** | **Meaning** |
+|----------------------|-------------|-------------|-------------|
+| and	| Returns True only if both conditions are true | if cpu_usage > CRITICAL_THRESHOLD and memory_usage > CRITICAL_THRESHOLD: | The condition is true only when both CPU and memory usage exceed CRITICAL_THRESHOLD, which may indicate heavy system load. |
+| or | Returns True if at least one condition is true | if service_down or network_unreachable: | The condition is true if either the service is down or the network cannot be reached, triggering an alert. |
+| not | Reverses the result of a condition | if not service_running: | The condition is true when the service is not running, meaning the system may need to restart the service or notify an administrator. |
+
+
+**Deeply Nested Logic**\
+Occurs when multiple conditional statements are placed inside one another repeatedly, creating several layers of indentation. 
+
+**Example:**
+```
+CRITICAL_THRESHOLD = 90
+server_reachable = True
+disk_usage = 92
+service_running = False
+
+if server_reachable:
+   if disk_usage > CRITICAL_THRESHOLD:
+      if not service_running:
+        print("Alert: Server reachable, disk usage high, and service is down.")
+```
+
+**Clearer Alternative**
+```
+CRITICAL_THRESHOLD = 90
+server_reachable = True
+disk_usage = 92
+service_running = False
+
+if server_reachable and disk_usage > CRITICAL_THRESHOLD and not service_running:
+   print("Alert: Server reachable, disk usage high, and service is down.")
+```
+
+**Alerts and Actions**
+
+An **alert** is a notification that indicates a condition has occurred.\
+Example of an alert:
+```
+if disk_usage > MAX_DISK_USAGE:
+   print("Alert: Disk usage exceeds safe threshold.")
+```
+
+An **action**, on the other hand, is an automated response that attempts to resolve or manage the condition.\
+Example of an action:
+```
+if log_file_size > MAX_LOG_SIZE:
+   archive_log_file()
+```
+
+**Functions as Responses**\
+Calling functions as responses is important in automation scripts because it helps organize actions in a clear, reusable, and maintainable way.\
+Example:
+```
+"""Defines what to do when an alert occurs"""
+def send_alert():
+   print("Alert: Disk usage exceeded safe threshold.")
+
+"""Checks to see if a condition is met that requires action/alert"""
+if disk_usage > MAX_DISK_USAGE:
+   send_alert()
+```
+
+**Separating Condition Checks from Action Logic**\
+A condition check determines whether a specific situation has occurred, while action logic performs the task that responds to that situation.
+
+Example with mixed logic (less clear):
+```
+CRITICAL_THRESHOLD = 90
+disk_usage = 92
+
+if disk_usage > CRITICAL_THRESHOLD:
+   print("Alert: Disk usage too high")
+   with open("alert_log.txt", "a") as file:
+      file.write("Disk usage exceeded threshold\n")
+```
+Example with separated logic:
+```
+CRITICAL_THRESHOLD = 90
+
+def send_alert():
+   print("Alert: Disk usage too high")
+
+disk_usage = 92
+
+if disk_usage > CRITICAL_THRESHOLD:
+   send_alert()
+```
+
+The following is a table of common automated actions that may be triggered by automation scripts when certain monitoring conditions are met.
+
+| **Trigger Condition** | **Automated Action** | **Purpose of the Action** |
+|-----------------------|----------------------|---------------------------|
+| Disk usage exceeds threshold | Send alert notification | Warn administrators before storage becomes critically full |
+| Service stops running | Restart the service | Restore system functionality automatically |
+| Failed login attempts exceed limit | Lock user account or trigger security alert | Prevent potential unauthorized access |
+| Log file exceeds size limit | Archive or compress log file | Prevent storage issues and maintain log history |
+| Network device unreachable | Retry connection or log failure | Detect connectivity issues and record them for troubleshooting |
+| CPU usage exceeds threshold | Log the event or scale system resources | Identify system overload and maintain performance |
+| Backup job fails | Retry backup process | Ensure critical data is successfully backed up |
+| Configuration drift detected | Reapply correct configuration | Maintain consistent system configuration |
 
 
 
