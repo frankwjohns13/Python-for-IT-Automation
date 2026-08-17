@@ -819,13 +819,201 @@ The following is a table of common automated actions that may be triggered by au
 -->
 
 
-<details><summary><strong>Lesson 2 - Reading and Writing Files</strong></summary>
+<details>
+<summary><strong>Lesson 2 - Reading and Writing Files</strong></summary>
+
+**Learning Objectives**
+- Develop a Python script that uses `for` and `while` loops to iterate through directories and files
+- Perform automated backups
+- Log the results for each file processed
+
+---
+
+### Python Imports
+
+Importing allows you to reuse code from other modules or libraries.
+
+**Basic syntax:**\
+from module import item
 
 
+**Example:**
+```
+Python
 
+from netmiko import ConnectHandler
 
+device = {
+    "device_type": "cisco_ios",
+    "host": "192.168.1.1",
+    "username": "admin",
+    "password": "password",
+}
 
+connection = ConnectHandler(**device)
+output = connection.send_command("show ip interface brief")
+print(output)
+connection.disconnect()
+```
 
+---
+
+### Files and Folders
+
+Every file has two key components:
+- **Filename** — the name of the file
+- **Path** — the location of the file
+
+| **Path Type** | **Description** | **Example** |
+|---------------|-----------------|-------------|
+| Absolute Path | Full path starting from root | `C:/Users/Frank/Documents/file.txt` |
+| Relative Path | Path relative to the current working directory | `Documents/file.txt` |
+
+---
+
+### Working with Paths (pathlib)
+
+Python’s Path class (from the pathlib module) makes working with file paths easier and more consistent across operating systems.
+
+```
+Python
+
+from pathlib import Path
+
+current_directory = Path.cwd()   # Current working directory
+home_directory = Path.home()     # User’s home directory
+```
+
+**Joining paths:**
+```
+Python
+
+file_path = Path.cwd() / "logs" / "report.txt"
+```
+
+**Creating folders:**
+```
+Python
+
+folder_path = Path("processed")
+folder_path.mkdir(exist_ok=True)
+```
+
+---
+
+### Reading and Writing Files
+
+There are three basic steps when working with files:
+1. Open the file
+2. Read from or write to the file
+3. Close the file
+
+Recommended method (using with):
+```
+Python
+
+from pathlib import Path
+
+file_path = Path("example.txt")
+
+# Write to a file
+with open(file_path, "w") as file:
+    file.write("This is a sample line of text.\n")
+    file.write("Python file handling with Path objects.")
+
+# Read from a file
+with open(file_path, "r") as file:
+    content = file.read()
+
+print(content)
+```
+
+Using `with` automatically closes the file when the code block completes.
+
+---
+
+### Working with CSV Files
+
+CSV files store tabular data using commas to separate values.
+
+```
+Python
+
+import csv
+
+with open("devices.csv", "r") as file:
+    reader = csv.reader(file)
+    for row in reader:
+        print(row)
+```
+
+---
+
+### Applied Practice: Process and Save a Network Device List
+
+**Task**
+1. Read the device list from devices.txt
+2. Add the label - READY FOR AUTOMATION to each device
+3. Overwrite the original file with the updated content
+4. Create a directory named processed
+5. Save a copy of the updated list as devices_processed.txt inside the processed folder
+
+**Expected Output:**
+```
+text
+
+router1 - READY FOR AUTOMATION
+switch1 - READY FOR AUTOMATION
+firewall1 - READY FOR AUTOMATION
+```
+
+---
+
+<details>
+<summary><strong>Solution</strong></summary>
+
+```
+Python
+
+from pathlib import Path
+
+# Set up file paths
+project_dir = Path(__file__).parent
+devices_file = project_dir / "devices.txt"
+processed_dir = project_dir / "processed"
+processed_file = processed_dir / "devices_processed.txt"
+
+# Part 1: Read the file
+with open(devices_file, "r") as file:
+    lines = file.readlines()
+
+# Part 2: Modify the data
+updated_lines = []
+for line in lines:
+    device = line.strip()
+    if device:
+        updated_line = f"{device} - READY FOR AUTOMATION\n"
+        updated_lines.append(updated_line)
+
+# Part 3: Write back to the original file
+with open(devices_file, "w") as file:
+    file.writelines(updated_lines)
+
+# Part 4: Create the directory
+processed_dir.mkdir(exist_ok=True)
+
+# Part 5: Save a copy in the new directory
+with open(processed_file, "w") as file:
+    file.writelines(updated_lines)
+
+print("Device list updated and saved to processed directory.")
+
+```
+</details> <!-- Ends Solution -->
+
+---
+
+**End Section 2, Lesson 2**
 
 
 </details> <!-- Ends Section 2: Lesson 2 -->
