@@ -21,6 +21,7 @@
    - **Nested Logic:** Multiple conditional statements are placed inside one another repeatedly, creating several layers of indentation.
    - **Alert:** Notification that indicates a condition has occurred
    - **Action:** Automated response that attempts to resolve or manage a condition
+   - **import:** Reuse existing code from modules and libraries instead of writing everything from scratch
 
 
 
