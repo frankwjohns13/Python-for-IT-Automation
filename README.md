@@ -22,6 +22,13 @@
    - **Alert:** Notification that indicates a condition has occurred
    - **Action:** Automated response that attempts to resolve or manage a condition
    - **import:** Reuse existing code from modules and libraries instead of writing everything from scratch
+   - **current working directory:** the folder where the Python script reads and writes files by default
+   - **home directory:** default personal folder where a user's files and settings are stored
+   - **absolute path:** the full path to a file or directory, starting from the root directory
+   - **relative path:** specifies a file or directory location based on the current working directory
+   - **anchor:** root folder of the filesystem
+   - **plaintext files:** files that contain only basic text characters and do not include font, size, or color information
+   - **csv files:** these store tabular data using commas to separate values
 
 
 
