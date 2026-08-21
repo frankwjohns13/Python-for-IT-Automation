@@ -1,6 +1,7 @@
 # Python for IT Automation - D522 - Notes
 
-<details><summary><Strong>Key Terms (A running collection of terms I feel are important from each section)</Strong></summary> 
+<details>
+<summary><Strong>Key Terms (A running collection of terms I feel are important from each section)</Strong></summary> 
 
    - **Module Docstring:** a documentation string placed at the beginning of a Python file that explains the script's purpose, functionality, and sometimes its inputs or environment requirements. Indicated by triple quotes.
    - **Import Statements:** Python statements used to include built-in modules or external libraries so their functions and features can be used within the script
@@ -31,7 +32,9 @@
    - **csv files:** these store tabular data using commas to separate values
 
 
+---
 
+**End Key Terms**
 
 
 
@@ -40,7 +43,8 @@
 
 ---
 
-<details><summary><strong>Code Snippets (I will add example code here)</summary>
+<details>
+<summary><strong>Code Snippets (I will add example code here)</summary>
 
 **Module Docstring** 
 ```python
@@ -183,13 +187,9 @@ if server_reachable and disk_usage > CRITICAL_THRESHOLD and not service_running:
    print("Alert: Server reachable, disk usage high, and service is down.")
 ```
 
+---
 
-
-
-
-
-
-
+**End Code Snippets**
 
 
 </details> <!-- Ends Code Snippets -->
@@ -363,8 +363,6 @@ if server_reachable and disk_usage > CRITICAL_THRESHOLD and not service_running:
 </details> <!-- Ends Section 1: Lesson 1 -->
 
 ---
-
-
 
 
 
@@ -562,6 +560,11 @@ if server_reachable and disk_usage > CRITICAL_THRESHOLD and not service_running:
 </details> <!-- Ends Section 1 -->
 
 ---
+
+
+
+
+
 
 
 
@@ -794,13 +797,9 @@ The following is a table of common automated actions that may be triggered by au
 | Backup job fails | Retry backup process | Ensure critical data is successfully backed up |
 | Configuration drift detected | Reapply correct configuration | Maintain consistent system configuration |
 
+---
 
-
-
-
-
-
-
+**End Lesson 1**
 
 
 
@@ -1018,11 +1017,7 @@ print("Device list updated and saved to processed directory.")
 
 </details> <!-- Ends Section 2: Lesson 2 -->
 
-
 ---
-
-
-
 
 
 <!-- 
@@ -1032,13 +1027,107 @@ print("Device list updated and saved to processed directory.")
 -->
 
 
-<details><summary><strong>Lesson 3 - Organizing Files and Folders</strong></summary>
+
+
+
+<details>
+<summary><strong>Lesson 3 - Organizing Files and Folders</strong></summary>
+
+**Learning Objectives**
+- Develop a Python script that processes data from a file, applies control structures to organize the information, and store the results for reporting purposes.
+
+---
+
+### The shutil Module
+
+The shutil module provides functions for copying, moving, renaming, and deleting files in your Python programs.
+
+**Copy Files**
+
+Calling `shutil.copy(source, destination)` will copy a file.
+
+**Example:**
+```
+Python
+import shutil
+
+source_file = "source.txt"
+destination_file = "destination.txt"
+
+shutil.copy(source_file, destination_file)
+
+print(f"File copied from {source_file} to {destination_file}")
+```
+
+**Copy Tree**
+
+Calling `shutil.copytree(source, destination)` copies the folder, all subfolders, and files in those folders from the source to the destination.
+
+**Example:**
+```
+Python
+import shutil
+
+source_directory = "source_folder"
+destination_directory = "destination_folder"
+
+shutil.copytree(source_directory, destination_directory)
+
+print(f"Directory copied from {source_directory} to {destination_directory}")
+```
+
+**Moving Files**
+
+Calling `shutil.move(source, destination) will lmove the file or folderat the path source to the path destination and return a string of the new location's absolute path.
+
+**Example:**
+```
+Python
+import shutil
+
+source_file = "source.txt"
+destination_file = "destination.txt"
+
+shutil.move(source_file, destination_file)
+
+print(f"File moved from {source_file} to {destination_file}")
+```
+
+
+**Moving Folders**
+
+Moving folders and subfolders in Python lets you reorganize files and directories efficiently as part of automated tasks. When you move a folder, all its contents, including files and nested subdirectories, move with it. This makes it easy to manage large directory structures without needing to handle each file individually. Using tools like shutil.move() lets you relocate an entire directory to a new path or rename it in a single step. This is especially useful in scenarios such as organizing backups, archiving old data, or restructuring project directories. It is important to ensure that the destination path exists or is defined correctly, as this determines where the folder will be placed. Automating folder movement helps reduce manual errors and ensure consistency, especially when working with complex file systems or when handling repeated tasks in network automation and system administration workflows.
+
+```
+Python
+import shutil
+
+source_directory = "source_folder"
+destination_directory = "new_location/source_folder"
+
+shutil.move(source_directory, destination_directory)
+
+print(f"Directory moved to {destination_directory}")
+```
+
+
+<!-- On Lesson 3.3: Deleting Files and Folders -->
 
 
 
 
 
 
+
+
+
+
+
+
+
+---
+
+**End Section 2: Lesson 3**
 
 
 </details> <!-- Ends Section 2: Lesson 3 -->
