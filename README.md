@@ -358,7 +358,7 @@ if server_reachable and disk_usage > CRITICAL_THRESHOLD and not service_running:
      
    </details> <!-- Ends Solution -->
    
-   **End Lesson 1**
+   **End Section 1: Lesson 1**
 
 </details> <!-- Ends Section 1: Lesson 1 -->
 
@@ -546,17 +546,18 @@ if server_reachable and disk_usage > CRITICAL_THRESHOLD and not service_running:
    ```
    
    </details> <!-- Ends Solution -->
-   
-   **End Lesson 2**
 
    ---
+   
+   **End Section 1: Lesson 2**
 
-   **End Section 1**
-   
-   
    </details> <!-- Ends Section 1: Lesson 2 -->
    
    
+---
+
+**End Section 1**
+
 </details> <!-- Ends Section 1 -->
 
 ---
@@ -581,7 +582,16 @@ if server_reachable and disk_usage > CRITICAL_THRESHOLD and not service_running:
 -->
 
 
-<details><summary><strong>Section 2 - Create Python Scripts</strong></summary>
+
+
+
+
+
+
+
+
+<details>
+<summary><strong>Section 2 - Create Python Scripts</strong></summary>
 
 ---
 
@@ -799,7 +809,7 @@ The following is a table of common automated actions that may be triggered by au
 
 ---
 
-**End Lesson 1**
+**End Section 2: Lesson 1**
 
 
 
@@ -811,11 +821,19 @@ The following is a table of common automated actions that may be triggered by au
 
 
 
+
+
 <!-- 
       *******************************
       THIS BEGINS SECTION 2: LESSON 2 
       *******************************
 -->
+
+
+
+
+
+
 
 
 <details>
@@ -1012,7 +1030,7 @@ print("Device list updated and saved to processed directory.")
 
 ---
 
-**End Section 2, Lesson 2**
+**End Section 2: Lesson 2**
 
 
 </details> <!-- Ends Section 2: Lesson 2 -->
@@ -1034,105 +1052,277 @@ print("Device list updated and saved to processed directory.")
 <summary><strong>Lesson 3 - Organizing Files and Folders</strong></summary>
 
 **Learning Objectives**
-- Develop a Python script that processes data from a file, applies control structures to organize the information, and store the results for reporting purposes.
+- Develop a Python script that processes data from a file
+- Apply control structures to organize information
+- Store results for reporting purposes
 
 ---
 
-### The shutil Module
+### The `shutil` Module
 
-The shutil module provides functions for copying, moving, renaming, and deleting files in your Python programs.
+The `shutil` module provides functions for copying, moving, renaming, and deleting files and folders.
 
-**Copy Files**
-
-Calling `shutil.copy(source, destination)` will copy a file.
-
-**Example:**
-```
-Python
+#### Copying Files
+```python
 import shutil
 
-source_file = "source.txt"
-destination_file = "destination.txt"
-
-shutil.copy(source_file, destination_file)
-
-print(f"File copied from {source_file} to {destination_file}")
+shutil.copy("source.txt", "destination.txt")
 ```
 
-**Copy Tree**
-
-Calling `shutil.copytree(source, destination)` copies the folder, all subfolders, and files in those folders from the source to the destination.
-
-**Example:**
+**Copying Entire Folders**
+```python
+shutil.copytree("source_folder", "destination_folder")
 ```
-Python
+
+**Moving Files or Folders**
+```Python
+shutil.move("source.txt", "destination.txt")
+shutil.move("source_folder", "new_location/source_folder")
+```
+
+---
+
+#### Deleting Files and Folders
+
+| **Function** | **Purpose** |
+|--------------|-------------|
+| `os.unlink(path)` | Delete a single file |
+| `os.rmdir(path)`  | Delete an empty folder |
+| `shutil.rmtree(path)` | Delete a folder and all of its contents |
+
+**Examples:**
+```Python
+import os
 import shutil
 
-source_directory = "source_folder"
-destination_directory = "destination_folder"
-
-shutil.copytree(source_directory, destination_directory)
-
-print(f"Directory copied from {source_directory} to {destination_directory}")
+os.unlink("example.txt")              # Delete a file
+shutil.rmtree("example_folder")       # Delete a folder and everything inside it
 ```
 
-**Moving Files**
+---
 
-Calling `shutil.move(source, destination) will lmove the file or folderat the path source to the path destination and return a string of the new location's absolute path.
+#### Listing Files and Folders
 
-**Example:**
+Using `os.listdir()`:
+```python
+import os
+
+items = os.listdir("example_folder")
+for item in items:
+    print(item)
 ```
-Python
+
+**Using `pathlib`:**
+```python
+from pathlib import Path
+
+folder = Path("example_folder")
+for item in folder.iterdir():
+    print(item)
+```
+
+---
+
+#### Walking a Directory Tree (`os.walk`)
+
+`os.walk()` lets you visit every folder and file in a directory tree.\
+It returns three values on each loop:
+1. Current folder name
+2. List of subfolders
+3. List of files
+
+```python
+import os
+from pathlib import Path
+
+for folder_name, subfolders, filenames in os.walk(Path.home() / "spam"):
+    print("Current folder:", folder_name)
+    
+    for subfolder in subfolders:
+        print("  Subfolder:", subfolder)
+    
+    for filename in filenames:
+        print("  File:", filename)
+```
+
+---
+
+#### Storing Results for Reporting
+
+**Summary Directories**
+```python
+summary = {
+    "processed": 0,
+    "skipped": 0,
+    "failed": 0
+}
+
+files = ["data.txt", "image.png", "report.txt"]
+
+for file in files:
+    if not file.endswith(".txt"):
+        summary["skipped"] += 1
+    else:
+        summary["processed"] += 1
+
+print(summary)
+```
+
+**Writing a Simple Report**
+```python
+summary = {
+    "processed": 10,
+    "skipped": 2,
+    "failed": 1
+}
+
+with open("report.txt", "w") as report:
+    report.write("Processing Summary\n")
+    report.write("------------------\n")
+    report.write(f"Processed: {summary['processed']}\n")
+    report.write(f"Skipped: {summary['skipped']}\n")
+    report.write(f"Failed: {summary['failed']}\n")
+```
+
+**Writing CSV Output**
+```python
+import csv
+
+data = [
+    ["hostname", "status"],
+    ["server01", "active"],
+    ["server02", "inactive"]
+]
+
+with open("report.csv", "w", newline="") as file:
+    writer = csv.writer(file)
+    writer.writerows(data)
+```
+
+---
+
+#### Best Practice: Separate Processing from Reporting
+
+**Less clear (mixed logic):**
+```python
+error_count = 0
+with open("system.log", "r") as file:
+    for line in file:
+        if "ERROR" in line:
+            error_count += 1
+            print("Error found:", line.strip())
+```
+
+**Cleaner approach:**
+```python
+def count_errors(file_path):
+    count = 0
+    with open(file_path, "r") as file:
+        for line in file:
+            if "ERROR" in line:
+                count += 1
+    return count
+
+def report_results(error_count):
+    print(f"Total errors: {error_count}")
+```
+
+---
+
+#### Applied Practice: Organizing Network Configuration Files
+
+**Goal**
+- Create a backup of the configuration files
+- Rename files to a standard naming convention
+- Move outdated files into an archive folder
+- Remove temporary files
+
+**Starting Structure:**
+```text
+network_cleanup_lab/
+├── configs/
+│   ├── router1.cfg
+│   ├── switch1.cfg
+│   ├── old_firewall.cfg
+│   └── temp/
+│       └── test.cfg
+```
+
+**Desired Final Structure:**
+```text
+network_cleanup_lab/
+├── configs/
+│   ├── router1_config.txt
+│   └── switch1_config.txt
+├── configs_backup/
+│   ├── router1.cfg
+│   ├── switch1.cfg
+│   └── old_firewall.cfg
+└── archived/
+    └── old_firewall.cfg
+```
+
+---
+
+<details>
+<summary><strong>Solution</strong></summary>
+
+```python
+from pathlib import Path
 import shutil
 
-source_file = "source.txt"
-destination_file = "destination.txt"
+# Set up paths
+project_dir = Path(__file__).parent
+configs_dir = project_dir / "configs"
+backup_dir = project_dir / "configs_backup"
+archived_dir = project_dir / "archived"
 
-shutil.move(source_file, destination_file)
+# Part 1: Backup the configs directory
+if not backup_dir.exists():
+    shutil.copytree(configs_dir, backup_dir)
+    print("Configs directory backed up.")
 
-print(f"File moved from {source_file} to {destination_file}")
+# Part 2: Rename files
+router_file = configs_dir / "router1.cfg"
+switch_file = configs_dir / "switch1.cfg"
+
+if router_file.exists():
+    router_file.rename(configs_dir / "router1_config.txt")
+
+if switch_file.exists():
+    switch_file.rename(configs_dir / "switch1_config.txt")
+
+print("Files renamed.")
+
+# Part 3: Archive old file
+archived_dir.mkdir(exist_ok=True)
+old_firewall = configs_dir / "old_firewall.cfg"
+
+if old_firewall.exists():
+    shutil.move(str(old_firewall), archived_dir / old_firewall.name)
+
+print("Old firewall config archived.")
+
+# Part 4: Delete temporary directory
+temp_dir = configs_dir / "temp"
+if temp_dir.exists():
+    shutil.rmtree(temp_dir)
+
+print("Temporary files removed.")
+print("Cleanup complete.")
 ```
 
-
-**Moving Folders**
-
-Moving folders and subfolders in Python lets you reorganize files and directories efficiently as part of automated tasks. When you move a folder, all its contents, including files and nested subdirectories, move with it. This makes it easy to manage large directory structures without needing to handle each file individually. Using tools like shutil.move() lets you relocate an entire directory to a new path or rename it in a single step. This is especially useful in scenarios such as organizing backups, archiving old data, or restructuring project directories. It is important to ensure that the destination path exists or is defined correctly, as this determines where the folder will be placed. Automating folder movement helps reduce manual errors and ensure consistency, especially when working with complex file systems or when handling repeated tasks in network automation and system administration workflows.
-
-```
-Python
-import shutil
-
-source_directory = "source_folder"
-destination_directory = "new_location/source_folder"
-
-shutil.move(source_directory, destination_directory)
-
-print(f"Directory moved to {destination_directory}")
-```
-
-
-<!-- On Lesson 3.3: Deleting Files and Folders -->
-
-
-
-
-
-
-
-
-
-
-
-
+</details> <!-- End Solution -->
 
 ---
 
 **End Section 2: Lesson 3**
 
-
 </details> <!-- Ends Section 2: Lesson 3 -->
 
+---
 
+**End Section 2**
 
 
 
