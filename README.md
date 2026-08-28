@@ -1,4 +1,4 @@
-# Python for IT Automation - D522 - Notes
+# Python for IT Automation - D522 - Textbook Notes
 
 <details>
 <summary><Strong>Key Terms (A running collection of terms I feel are important from each section)</Strong></summary> 
