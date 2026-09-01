@@ -1612,6 +1612,8 @@ Step 3: Send an email.
 2026-04-29 10:00:00 - ERROR - bad_device failed to process  
 2026-04-29 10:00:01 - INFO - Email sent successfully  
 
+---
+
 <details>
 <summary><strong>SOLUTION</strong></summary>
 
@@ -1672,7 +1674,7 @@ print("Automation complete. Check the log file and SMTP output.")
    
 </details> <!-- End Solution -->
 
-
+---
 
 
 
@@ -1695,12 +1697,205 @@ print("Automation complete. Check the log file and SMTP output.")
 
 </details> <!-- This ends Section 3: Lesson 1 -->
 
-   
+---
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- 
       *******************************
       THIS BEGINS SECTION 3: LESSON 2 
       *******************************
 -->
+
+
+
+
+
+
+
+
+
+
+
+
+<details>
+<summary><strong>Lesson 2 - Automating Network Device Configuration</strong></summary>
+
+**Learning Objectives**
+- Use third-party libraries to connect to and configure network devices
+- Understand the role of external packages in automation scripts
+
+---
+
+### Why Use Third-Party Libraries?
+
+The standard library is powerful, but some tasks (like managing network devices) are much easier with specialized libraries.
+
+Common example: `netmiko` for SSH connections to network devices.
+
+```python
+from netmiko import ConnectHandler
+
+device = {
+    "device_type": "cisco_ios",
+    "host": "192.168.1.1",
+    "username": "admin",
+    "password": "password",
+}
+
+connection = ConnectHandler(**device)
+output = connection.send_command("show ip interface brief")
+print(output)
+connection.disconnect()
+```
+
+---
+
+### Best Practices with External Packages
+
+- Install only what you need
+- Prefer standard library when possible
+- Keep imports organized at the top of the script
+- Avoid hard-coding credentials
+
+---
+
+### Applied Practice: Reviewing VyOS Router Information with NAPALM
+
+**Overview**  You are working in a lab environment with a VyOS router. Your task is to use Python and NAPALM to connect to the router and collect basic device information.
+
+The router has the following details:
+
+IP address: 10.10.10.1  
+Username: vyos  
+Password: vyos  
+
+Make sure NAPALM is installed.
+
+**Instructions**
+
+Step 1: Import NAPALM.
+- Import get_network_driver from the napalm library 
+
+Step 2: Define the VyOS connection.
+- Create variables for the following:
+  - IP Address
+  - username
+  - password 
+
+Step 3: Connect to the router.
+- Use the NAPALM vyos driver to open a connection to the router.
+
+Step 4: Retrieve device facts. 
+- Use get_facts() to collect information:
+  - hostname
+  - vendor
+  - model
+  - operating system version
+  - uptime
+  - interfaces 
+
+Step 5: Retrieve interface information.
+- Use get_interfaces() to collect interface status details.
+
+Step 6: Print the results. 
+- Display the router facts and interface information in the terminal.
+
+---
+
+<details>
+<summary><strong>SOLUTION</strong></summary>
+
+```python
+from napalm import get_network_driver
+
+# Device connection information
+ip_address = "10.10.10.1"          # Best to not hard code things that may change
+username = "vyos"                  # NEVER hard code usernames
+password = "vyos"                  # NEVER EVER hard code passwords
+
+# Select the VyOS NAPALM driver
+driver = get_network_driver("vyos")
+
+# Create the device connection object
+router = driver(
+   hostname=ip_address,
+   username=username,
+   password=password
+)
+
+# Open the connection
+router.open()
+
+print("Connected to VyOS router")
+
+# Retrieve device facts
+facts = router.get_facts()
+
+print("\nDevice Facts")
+print("------------")
+print(f"Hostname: {facts['hostname']}")
+print(f"Vendor: {facts['vendor']}")
+print(f"Model: {facts['model']}")
+print(f"OS Version: {facts['os_version']}")
+print(f"Uptime: {facts['uptime']} seconds")
+
+print("\nInterfaces")
+print("----------")
+
+for interface in facts["interface_list"]:
+   print(interface)
+
+# Retrieve interface details
+interfaces = router.get_interfaces()
+
+print("\nInterface Details")
+print("-----------------")
+
+for interface_name, details in interfaces.items():
+   print(f"\nInterface: {interface_name}")
+   print(f"Enabled: {details['is_enabled']}")
+   print(f"Up: {details['is_up']}")
+   print(f"Description: {details['description']}")
+   print(f"MAC Address: {details['mac_address']}")
+   print(f"Speed: {details['speed']} Mbps")
+
+# Close the connection
+router.close()
+
+print("\nConnection closed")
+```
+   
+</details> <!-- End Solution -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+**End Section 3: Lesson 2**
+   
+</details> <!-- Ends Section 3: Lesson 2 -->
 
 
 
