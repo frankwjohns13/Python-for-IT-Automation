@@ -1359,13 +1359,48 @@ print("Cleanup complete.")
 
 
 
+
+
+
 <!-- 
       *******************************
       THIS BEGINS SECTION 3 
       *******************************
 -->
 
+
+
+
+
+
+
+
+
+
+
+
+
 <details><summary><strong>Section 3 - Integrate Python Modules</strong></summary>
+
+---
+
+**Prepare for the Assessment**  
+To prepare for the assessment, ask yourself these questions:
+- Can I develop a Python script that uses if-else statements to monitor system conditions and automatically triggers an alert or action based on specified criteria?
+- Can I create a Python script utilizing for and while loops to iterate through directories and files, performing automated backups and logging the results for each file processed?
+- Can I create a Python script that processes data extracted from a file, applies control structures to organize the information, and stores the results for reporting purposes?
+
+---
+
+
+
+
+
+
+
+
+
+
 
 
 <!-- 
@@ -1375,6 +1410,292 @@ print("Cleanup complete.")
 -->
 
 
+
+
+
+
+
+
+
+
+
+
+<details>
+<summary><strong>Lesson 1 - Automating Network Connectivity Checks</strong></summary>
+
+**Learning Objectives**
+- Develop a Python script that uses standard library modules to automate network connectivity checks and log the results to a file
+
+---
+
+### Connectivity Checks
+
+Connectivity checks verify whether systems, services, and network resources are reachable.
+
+**Common uses:**
+- Service availability monitoring
+- Server health validation
+- Pre-deployment checks
+- Scheduled uptime monitoring
+
+**Manual vs Automated Testing**
+
+| Type | Description | Example |
+|------|-------------|---------|
+| **Manual** | Person runs the check and interprets results | `ping example.com` |
+| **Automated** | Script performs the check and evaluates the result | `if check_connection("example.com"):` |
+
+---
+
+### Useful Standard Library Modules
+
+| Module | Purpose |
+|--------|---------|
+| `socket` | Test if a host/port is reachable |
+| `subprocess` | Run system commands (like `ping`) |
+| `datetime` | Add timestamps to logs |
+| `os` / `pathlib` | Work with files and directories |
+
+**Socket example:**
+```python
+import socket
+
+try:
+    socket.create_connection(("example.com", 80), timeout=5)
+    print("Connection successful")
+except OSError:
+    print("Connection failed")
+```
+
+**Subprocess (ping) example:**
+
+```python
+import subprocess
+
+HOST = "192.168.1.1"
+
+result = subprocess.run(
+    ["ping", "-c", "1", HOST],
+    capture_output=True,
+    text=True
+)
+
+if result.returncode == 0:
+    print(f"SUCCESS: {HOST} is reachable")
+else:
+    print(f"ERROR: {HOST} is not reachable")
+```
+
+---
+
+### Control Structures for Connectivity Logic
+
+**Basic pattern:**
+1. Perform a connection check
+2. Store the result (True / False)
+3. Use if-else to respond
+
+```python
+is_connected = check_connection()
+
+if is_connected:
+    print("Connection successful")
+else:
+    print("Connection failed")
+```
+
+---
+
+### Exeception Handling
+
+Use `try-except` to prevent scripts from crashing.
+
+**Bad (silent failure):**
+
+```python
+try:
+    connect_to_server()
+except Exception:
+    pass
+```
+
+ **Better:**
+
+ ```python
+try:
+    connect_to_server()
+except Exception as error:
+    print(f"ERROR: Connection failed - {error}")
+```
+
+---
+
+### Meaningful Status Messages
+
+Avoid vague messages like "Done".
+
+**Better:**
+
+```python
+print("Backup completed successfully for report.txt")
+print(f"ERROR: Unable to reach {host}")
+```
+
+---
+
+### Logging Results
+
+```python
+from datetime import datetime
+from pathlib import Path
+
+log_file = Path("network_log.txt")
+timestamp = datetime.now()
+
+with open(log_file, "a") as log:
+    log.write(f"{timestamp} - Connection check completed\n")
+```
+
+---
+
+### Applied Practice: Network Automation Report with Email and Logging
+
+**Overview**
+
+You are building a simple network automation script that does the following:
+- processes a list of devices
+- logs whether each device succeeded or failed
+- sends a summary email with the results
+
+**Project Setup**
+
+Create this structure:
+- network_reporting_lab\
+   - devices.txt
+   - automation.log
+
+devices.txt contains the following:
+
+router1  
+switch1  
+firewall1  
+bad_device  
+
+**Instructions**
+
+Step 1: Configure logging.
+- log messages to automation.log
+- use
+  - INFO for successful processing
+  - ERROR for failures
+
+Step 2: Process devices.
+- Read devices from devices.txt.
+- For each device
+  - if the device is "bad_device" → log an error
+  - otherwise → log success 
+- Keep track of the following:
+  - number of successes
+  - number of failures
+
+Step 3: Send an email.
+- Create an email message using email.message.EmailMessage.
+- Include the following:
+  - total successes
+  - total failures 
+- Send the email using a local SMTP debug server.
+
+**Expected Output**  
+2026-04-29 10:00:00 - INFO - router1 processed successfully  
+2026-04-29 10:00:00 - INFO - switch1 processed successfully  
+2026-04-29 10:00:00 - INFO - firewall1 processed successfully  
+2026-04-29 10:00:00 - ERROR - bad_device failed to process  
+2026-04-29 10:00:01 - INFO - Email sent successfully  
+
+<details>
+<summary><strong>SOLUTION</strong></summary>
+
+```python
+import logging
+from pathlib import Path
+import smtplib
+from email.message import EmailMessage
+
+# Setup paths
+project_dir = Path(__file__).parent
+devices_file = project_dir / "devices.txt"
+log_file = project_dir / "automation.log"
+
+# Step 1: Configure logging
+logging.basicConfig(
+   filename=log_file,
+   level=logging.INFO,
+   format="%(asctime)s - %(levelname)s - %(message)s"
+)
+
+# Step 2: Process devices
+success_count = 0
+failure_count = 0
+
+with open(devices_file, "r") as file:
+   devices = [line.strip() for line in file if line.strip()]
+
+for device in devices:
+   if device == "bad_device":
+      logging.error(f"{device} failed to process")
+      failure_count += 1
+   else:
+      logging.info(f"{device} processed successfully")
+      success_count += 1
+
+# Step 3: Create and send email
+msg = EmailMessage()
+msg["Subject"] = "Network Automation Report"
+msg["From"] = "sender@example.com"
+msg["To"] = "recipient@example.com"
+
+msg.set_content(f"""
+Automation Summary:
+
+Successful devices: {success_count}
+Failed devices: {failure_count}
+""")
+
+# Send email (assumes local SMTP debug server is running)
+with smtplib.SMTP("localhost", 1025) as server:
+   server.send_message(msg)
+
+logging.info("Email sent successfully")
+
+print("Automation complete. Check the log file and SMTP output.")
+```
+   
+</details> <!-- End Solution -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**End Section 3: Lesson 1**
+
+</details> <!-- This ends Section 3: Lesson 1 -->
+
+   
 <!-- 
       *******************************
       THIS BEGINS SECTION 3: LESSON 2 
