@@ -204,11 +204,21 @@ if server_reachable and disk_usage > CRITICAL_THRESHOLD and not service_running:
 ---
 
 
+
+
+
+
+
 <!-- 
       *******************************
       THIS BEGINS SECTION 1: LESSON 1 
       *******************************
 -->
+
+
+
+
+
 
 
 
@@ -1038,11 +1048,19 @@ print("Device list updated and saved to processed directory.")
 ---
 
 
+
+
+
+
 <!-- 
       *******************************
       THIS BEGINS SECTION 2: LESSON 3 
       *******************************
 -->
+
+
+
+
 
 
 
@@ -1062,7 +1080,7 @@ print("Device list updated and saved to processed directory.")
 
 The `shutil` module provides functions for copying, moving, renaming, and deleting files and folders.
 
-#### Copying Files
+### Copying Files
 ```python
 import shutil
 
@@ -1101,7 +1119,7 @@ shutil.rmtree("example_folder")       # Delete a folder and everything inside it
 
 ---
 
-#### Listing Files and Folders
+### Listing Files and Folders
 
 Using `os.listdir()`:
 ```python
@@ -1123,7 +1141,7 @@ for item in folder.iterdir():
 
 ---
 
-#### Walking a Directory Tree (`os.walk`)
+### Walking a Directory Tree (`os.walk`)
 
 `os.walk()` lets you visit every folder and file in a directory tree.\
 It returns three values on each loop:
@@ -1147,7 +1165,7 @@ for folder_name, subfolders, filenames in os.walk(Path.home() / "spam"):
 
 ---
 
-#### Storing Results for Reporting
+### Storing Results for Reporting
 
 **Summary Directories**
 ```python
@@ -1201,7 +1219,7 @@ with open("report.csv", "w", newline="") as file:
 
 ---
 
-#### Best Practice: Separate Processing from Reporting
+### Best Practice: Separate Processing from Reporting
 
 **Less clear (mixed logic):**
 ```python
@@ -1229,7 +1247,7 @@ def report_results(error_count):
 
 ---
 
-#### Applied Practice: Organizing Network Configuration Files
+### Applied Practice: Organizing Network Configuration Files
 
 **Goal**
 - Create a backup of the configuration files
