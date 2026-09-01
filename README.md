@@ -1,200 +1,5 @@
 # Python for IT Automation - D522 - Textbook Notes
 
-<details>
-<summary><Strong>Key Terms (A running collection of terms I feel are important from each section)</Strong></summary> 
-
-   - **Module Docstring:** a documentation string placed at the beginning of a Python file that explains the script's purpose, functionality, and sometimes its inputs or environment requirements. Indicated by triple quotes.
-   - **Import Statements:** Python statements used to include built-in modules or external libraries so their functions and features can be used within the script
-   - **Constants:** named variables whose values are intended to remain unchanged during program execution, typically written in uppercase letters to indicate that they represent fixed configuration values
-   - **Main Execution block:** the section of a Python script that contains the code that should run when the script is executed directly
-   - **Clean Code:** Clean code is essential in automation because scripts often support operational workflows where reliability, readability, and maintainability are critical.
-   - **Hard-coded:** Hard-coding occurs when you use values instead of variables. This makes updating difficult as every place that value is used has to be found and corrected if something changes.
-   - **README:** Is a document that explains how a piece of software or script works.
-   - **cron:** Unix or Linux scheduling tool that automates recurring commands or scripts at specified times
-   - **Conditional Logic:** Allows a program to make decisions and execute different code based on whether a condition is true or false.
-   - **Monitoring:** Collecting information about the system.
-   - **Evaluating:** Compare data against a predefined set of rules.
-   - **Acting:** Performing a task.
-   - **Triggers:** Condition or event that causes a specific block of code to execute.
-   - **Magic Numbers:** Numeric values written directly into code without explanation or context.
-   - **Measurable Condition:** Defines a clear rule that a script can evaluate to determine whether an action should occur.
-   - **Threshold:** Predefined value that determines when a condition triggers a specific action.
-   - **Nested Logic:** Multiple conditional statements are placed inside one another repeatedly, creating several layers of indentation.
-   - **Alert:** Notification that indicates a condition has occurred
-   - **Action:** Automated response that attempts to resolve or manage a condition
-   - **import:** Reuse existing code from modules and libraries instead of writing everything from scratch
-   - **current working directory:** the folder where the Python script reads and writes files by default
-   - **home directory:** default personal folder where a user's files and settings are stored
-   - **absolute path:** the full path to a file or directory, starting from the root directory
-   - **relative path:** specifies a file or directory location based on the current working directory
-   - **anchor:** root folder of the filesystem
-   - **plaintext files:** files that contain only basic text characters and do not include font, size, or color information
-   - **csv files:** these store tabular data using commas to separate values
-
-
----
-
-**End Key Terms**
-
-
-
-
-</details> <!-- Ends Key Terms -->
-
----
-
-<details>
-<summary><strong>Code Snippets (I will add example code here)</summary>
-
-**Module Docstring** 
-```python
-"""
-Network connectivity monitor.
-
-This script checks whether specified servers are reachable
-and logs the results to a file.
-"""
-```
-
-**Import Statements** 
-```python
-import socket
-from datetime import datetime
-```
-
-**Constants**
-```python
-SERVERS = ["google.com", "example.com", "github.com"]
-PORT = 80
-TIMEOUT = 5
-LOG_FILE = "connectivity_log.txt"
-```
-
-**Main Execution Block**
-```python
-def main():
-   """Main workflow for checking servers."""
-   for server in SERVERS:
-      if check_connection(server, PORT):
-         status = "REACHABLE"
-      else:
-         status = "UNREACHABLE"
-      print(f"{server}: {status}")
-      log_result(server, status)
-```
-
-**Messy Code**
-```python
-import os,sys
-servers=["server1","server2","server3"]
-for s in servers:
-   if s=="server1":print("Checking server1");status=True
-   elif s=="server2":print("Checking server2");status=True
-   else:print("Checking server3");status=False
-   if status==True:print(s+" is online")
-   else:print(s+" is offline")
-```
-
-**Clean Code**
-```python
-import os
-import sys
-
-servers = ["server1", "server2", "server3"]
-
-for server in servers:
-   print(f"Checking {server}")
-
-   if server == "server1" or server == "server2":
-      status = True
-   else:
-      status = False
-
-   if status:
-      print(f"{server} is online")
-   else:
-      print(f"{server} is offline")
-```
-Notice how much easier it is to read when it has proper spacing. This makes updating, error checking, and troubleshooting easier.
-
-
-**Conditional Logic**
-```python
-MAX_CPU_USAGE = 85
-
-cpu_usage = 92 # Simulated CPU usage value, in a real time environment you would have a function to get the actual CPU usage at the time.
-
-if cpu_usage > MAX_CPU_USAGE:
-   print("ALERT: CPU usage is too high.")
-   print(f"Current CPU usage: {cpu_usage}%")
-else:
-   print("CPU usage is within acceptable limits.")
-   print(f"Current CPU usage: {cpu_usage}%")
-```
-
-**Match/Case**
-```python
-command = "start" # This would come from an input statement asking what you want to do. 
-
-match command:
-   case "start":
-      print("Starting system")
-   case "stop":
-      print("Stopping system")
-   case _:
-      print("Unknown command")
-```
-
-**Monitoring, Evaluating, Acting
-```python
-MAX_FAILED_LOGINS = 5
-
-failed_login_attempts = 7 # Simulated monitoring value
-
-# Monitoring
-print("Checking failed login attempts...")
-
-# Evaluating
-if failed_login_attempts > MAX_FAILED_LOGINS:
-   # Acting
-   print("ALERT: Too many failed login attempts detected.")
-else:
-   # Acting
-   print("Login activity is within acceptable limits.")
-```
-
-**Deeply Nested Logic**
-```python
-CRITICAL_THRESHOLD = 90
-server_reachable = True
-disk_usage = 92
-service_running = False
-
-if server_reachable:
-   if disk_usage > CRITICAL_THRESHOLD:
-      if not service_running:
-        print("Alert: Server reachable, disk usage high, and service is down.")
-```
-
-**Clearer Alternative**
-```python
-CRITICAL_THRESHOLD = 90
-server_reachable = True
-disk_usage = 92
-service_running = False
-
-if server_reachable and disk_usage > CRITICAL_THRESHOLD and not service_running:
-   print("Alert: Server reachable, disk usage high, and service is down.")
-```
-
----
-
-**End Code Snippets**
-
-
-</details> <!-- Ends Code Snippets -->
-
----
 
 <!-- THIS BEGINS SECTION 1 -->
 
@@ -222,151 +27,221 @@ if server_reachable and disk_usage > CRITICAL_THRESHOLD and not service_running:
 
 
 
-   <details>
-   <summary><strong>Lesson 1 - Clean and Well-Documented Scripts</strong></summary>
+<details>
+<summary><strong>Lesson 1 - Clean and Well-Documented Scripts</strong></summary>
 
-   **Learning Objectives**
-   - Develop a Python script that demonstrates correct syntax, clean structure, meaningful variable handling, and appropriate inline documentation.
+**Learning Objectives**
+- Develop a Python script that demonstrates correct syntax, clean structure, meaningful variable handling, and appropriate inline documentation.
 
-   ---
+---
+
+**Key Terms**
+- **module docstring:** a documentation string placed at the beginning of a Python file that explains the script's purpose, functionality, and sometimes its inputs or environment requirements
+- **import statements:** Python statements used to include built-in modules or external libraries so their functions and features can be used within the script
+- **constants:** named variables whose values are intended to remain unchanged during program execution, typically written in uppercase letters to indicate that they represent fixed configuration values
+- **main execution block:** the section of a Python script that contains the code that should run when the script is executed directly
+
+---
+
+
    
-   ### Hard-Coded Values
+### Hard-Coded Values
    
-   Hard-coding occurs when you use fixed values directly in the code instead of variables.\
-   This makes the script harder to update because every occurrence of that value must be found and changed manually.
+Hard-coding occurs when you use fixed values directly in the code instead of variables.\
+This makes the script harder to update because every occurrence of that value must be found and changed manually.
    
-   ---
+---
    
-   ### Variable Naming Rules
+### Variable Naming Rules
    
-   A good variable name clearly describes the data it holds.
+A good variable name clearly describes the data it holds.
    
-   Rules for naming variables:
-   - Cannot contain spaces
-   - Can only use letters, numbers, and underscores (`_`)
-   - Cannot begin with a number
-   - Cannot be a Python keyword (`if`, `for`, `return`, etc.)
-   
-   ---
-   
-   ### Effective Documentation
-   
-   Professional Python scripts include documentation that explains what the code does.
-   
-   Documentation blocks start and end with triple quotes:
-   
-   ```python
-   """
-   This script checks which servers are currently up.
-   """
-   ```
+Rules for naming variables:
+- Cannot contain spaces
+- Can only use letters, numbers, and underscores (`_`)
+- Cannot begin with a number
+- Cannot be a Python keyword (`if`, `for`, `return`, etc.)
   
-   ---
+---
    
-  ### Lesson 1 - Refactoring an Automation Script Practical
-  
-  **Overview**\
-  In this task, you will take an existing Python script and refactor it to improve readability and maintainability without changing what it does.
+### Effective Documentation
    
-  **What the Script Does**\
-  - Contains a list of servers.
-  - Each server has a hostname and a status ("up" or "down").
-  - Checks each server and prints:
-    - An alert if the server is down
-    - A normal message if the server is operational
+Professional Python scripts include documentation that explains what the code does.
 
-   ---
+Documentation blocks start and end with triple quotes:
+   
+```python
+"""
+This script checks which servers are currently up.
+"""
+```
+  
+---
+   
+### Lesson 1 - Refactoring an Automation Script Practical
+  
+**Overview**\
+In this task, you will take an existing Python script and refactor it to improve readability and maintainability without changing what it does.
+   
+**What the Script Does**
+- Contains a list of servers.
+- Each server has a hostname and a status ("up" or "down").
+- Checks each server and prints:
+  - An alert if the server is down
+  - A normal message if the server is operational
+
+---
      
-   **Requirements**\
-   Your refactored script must include:
+**Requirements**\
+Your refactored script must include:
    
-   **Clean Structure**
-   - Proper indentation.
-   - Logical organization
-   - One statement per line
+**Clean Structure**
+- Proper indentation.
+- Logical organization
+- One statement per line
+  
+**Meaningful Variable Names**
+- Replace unclear names with descriptive ones.
    
-   **Meaningful Variable Names**
-   - Replace unclear names with descriptive ones.
+**Constants for Configuration**
+- Replace hard-coded values with named constants.
    
-   **Constants for Configuration**
-   - Replace hard-coded values with named constants.
+**Module Docstring**
+- Include a docstring at the top explaining the purpose of the script
    
-   **Module Docstring**
-   - Include a docstring at the top explaining the purpose of the script
+**Clear Inline Documentation**
+- Add comments that explain intent (not obvious code)
    
-   **Clear Inline Documentation**
-   - Add comments that explain intent (not obvious code)
+**Proper Formatting**
+- Consistent spacing
+- Readable layout
+- No syntax errors
    
-   **Proper Formatting**
-   - Consistent spacing
-   - Readable layout
-   - No syntax errors
+**Use a Main Function**
+- Wrap your logic in a function.
+- Use the following:
    
-   **Use a Main Function**
-   - Wrap your logic in a function.
-   - Use the following:
+```Python
+if __name__ == "__main__":
+   check_servers()
+```
+
+---
    
-   ```Python
+### Applied Practice: Refactoring an Automation Script
+
+**Overview**  
+In this task, you will take an existing Python script and refactor it. Refactoring is restructuring code to improve readability, efficiency, or maintainability. The script currently works, but it is poorly structured and difficult to read. Your goal is to improve its quality without changing what it does.
+
+**What the Script Does**  
+The script simulates a simple monitoring task:
+- It contains a list of servers.
+- Each server has a hostname and a status ("up" or "down").
+- The script does the following:
+  - checks each server
+  - prints a message for each one
+  - displays an alert if a server is down
+  - displays a normal message if the server is operational
+
+**Task**  
+You will refactor the provided script to improve its structure, readability, and maintainability. You must not change what the script does, only how it is written.
+
+**Requirements**  
+Your refactored script must include the following components:
+
+**Clean Structure**
+- Use proper indentation.
+- Organize code into logical sections.
+- Avoid writing multiple statements on one line.
+
+**Meaningful Variable Names**
+- Replace unclear names.
+- Use descriptive names.
+
+**Constants for Configuration**
+- Replace hard-coded values with named constants.
+
+**Module Docstring**
+- At the top of your script, include a docstring that explains what the script does and what problem it solves.
+
+**Clear Inline Documentation**
+- Add comments to explain intent, not obvious code.
+
+**Proper Formatting and Syntax**
+- Follow consistent spacing.
+- Use readable formatting.
+- Ensure the script runs without syntax errors.
+
+**Use a Main Function**
+- Wrap your logic in a function.
+- Use the following:  
    if __name__ == "__main__":
-      check_servers()
-   ```
-   
-   **Code to Refactor**
-   ```Python
-   servers=[{"hostname":"web01","status":"up"},{"hostname":"db01","status":"down"},{"hostname":"app01","status":"up"},{"hostname":"dns01","status":"down"}]
-   def x():
-      for s in servers:
-         h=s["hostname"];z=s["status"]
-         if z=="down":print(h+" is down")
-         else:print(h+" is operational")
-   x()
-   ```
+   check_servers()
 
-   
-   
-   <!--
-   **********************
-         Solution 
-   **********************
-   -->
+**What You Should Not Do**
+- Do **not** change the logic or output of the script.
+- Do **not** add new features.
 
+
+**Code to Refactor**
+   
+```Python
+servers=[{"hostname":"web01","status":"up"},{"hostname":"db01","status":"down"},{"hostname":"app01","status":"up"},{"hostname":"dns01","status":"down"}]
+def x():
+   for s in servers:
+      h=s["hostname"];z=s["status"]
+      if z=="down":print(h+" is down")
+      else:print(h+" is operational")
+x()
+```
    
    
-   <details>
-   <summary><strong>Solution (One possible solution)</strong></summary>
+<!--
+**********************
+      Solution 
+**********************
+-->
 
-   ```Python
-   """
-   Checks the status of servers and prints alerts for any server that is down.
+---
+   
+<details>
+<summary><strong>Solution (One possible solution)</strong></summary>
 
-   This script iterates through a list of servers and reports whether each server is operational or requires attention.
-   """
+```Python
+"""
+Checks the status of servers and prints alerts for any server that is down.
 
-   DOWN_STATUS = "down"
+This script iterates through a list of servers and reports whether each server is operational or requires attention.
+"""
 
-   servers = [
-    {"hostname": "web01", "status": "up"},
+DOWN_STATUS = "down"
+
+servers = [
+   {"hostname": "web01", "status": "up"},
     {"hostname": "db01", "status": "down"},
     {"hostname": "app01", "status": "up"},
     {"hostname": "dns01", "status": "down"}
-   ]
+]
 
-   def check_servers_status():
-    """Check each server and print its status."""
-    for server in servers:
-        hostname = server["hostname"]
-        status = server["status"]
+def check_servers_status():
+   """Check each server and print its status."""
+   for server in servers:
+      hostname = server["hostname"]
+      status = server["status"]
 
-        if status == DOWN_STATUS:
-            print(f"ALERT: {hostname} is down")
-        else:
-            print(f"{hostname} is operational")
+      # Determine if the server is down 
+      if status == DOWN_STATUS:
+         print(f"ALERT: {hostname} is down")
+      else:
+         print(f"{hostname} is operational")
 
-   if __name__ == "__main__":
-      check_servers_status()
-   ```
+if __name__ == "__main__":
+   check_servers_status()
+```
      
    </details> <!-- Ends Solution -->
+
+   ---
    
    **End Section 1: Lesson 1**
 
