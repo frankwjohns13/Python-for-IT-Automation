@@ -708,6 +708,100 @@ The following is a table of common automated actions that may be triggered by au
 
 ---
 
+### Applied Practice: DNS Service Status Monitor
+
+**Overview**  
+In this performance task, you will create a Python script that monitors the status of a DNS service on a Linux server and prints an appropriate response based on the service condition. You should use a simulated service status value rather than checking a real system service. Your script should demonstrate that you can use conditional logic to evaluate a realistic system condition and produce professional, readable output. You can use a Python environment on your computer, or you can use the lab environment:
+
+Your script must include the following:
+- at least one constant
+- a realistic service status variable
+- if-elif-else logic
+- at least one warning or alert message
+- clear and professional output
+- clean structure and formatting
+
+**Suggested simulated values**
+
+Use one of the following values for your DNS service status:
+- "active"
+- "inactive"
+- "failed"
+
+---
+
+<details>
+<summary><strong>SOLUTION</strong></summary>
+
+```python
+"""
+Monitors the status of a DNS service on a Linux system.
+
+This script evaluates a simulated DNS service status and prints
+a professional message indicating whether the service is
+running,inactive, or has failed.
+"""
+
+SERVICE_NAME = "DNS"
+ACTIVE_STATUS = "active"
+INACTIVE_STATUS = "inactive"
+FAILED_STATUS = "failed"
+
+# Simulated service status (students can change this value)
+dns_service_status = "inactive"
+
+def check_dns_service():
+     """Evaluate the DNS service status and display the appropriate message."""
+ 
+   print(f"Service Monitor: {SERVICE_NAME}")
+   print(f"Service Status: {dns_service_status}")
+
+   # Determine service condition and respond accordingly
+   if dns_service_status == ACTIVE_STATUS:
+        print("[OK] DNS service is running normally.")
+   elif dns_service_status == INACTIVE_STATUS:
+        print("[WARNING] DNS service is inactive. Investigation is recommended.")
+   elif dns_service_status == FAILED_STATUS:
+        print("[ALERT] DNS service has failed. Immediate action is required.")
+   else:
+        print("[UNKNOWN] Service status is unrecognized.")
+        
+if __name__ == "__main__":
+check_dns_service()
+
+```
+
+</details> <!-- End of Solution -->
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 **End Section 2: Lesson 1**
 
 
