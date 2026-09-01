@@ -1877,25 +1877,306 @@ print("\nConnection closed")
    
 </details> <!-- End Solution -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ---
+
 
 **End Section 3: Lesson 2**
    
 </details> <!-- Ends Section 3: Lesson 2 -->
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+      *******************************
+      THIS BEGINS SECTION 3: LESSON 3 
+      *******************************
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<details>
+<summary><strong>Lesson 3 - Retrieving and Processing Data from APIs</strong></summary>
+
+**Learning Objectives**
+- Send API requests using the `requests` library
+- Process and validate API responses
+- Use environment variables to protect sensitive data
+
+---
+
+### Installing and Importing `requests`
+
+```bash
+pip install requests
+```
+
+```python
+import requests
+```
+
+---
+
+### Common HTTP Methods
+
+| **Method** | **Purpose**         | **When to Use**           |
+|------------|---------------------|---------------------------|
+| GET        | Retrieve data       | Reading information       |
+| POST       | Create data         | Adding a new resource     |
+| PUT        | Update/replace data | Fully updating a resource |
+| DELETE     | Remove data         | Deleting a resource       |
+
+---
+
+### Basic GET Request
+
+```python
+import requests
+
+response = requests.get("https://api.example.com/data")
+
+print(response.status_code)
+print(response.text)
+
+data = response.json()
+print(data)
+```
+
+**With parameters:**
+
+```python
+params = {"status": "active"}
+response = requests.get("https://api.example.com/servers", params=params)
+```
+
+**With headers (authentication):**
+
+```python
+headers = {"Authorization": "Bearer TOKEN"}
+response = requests.get("https://api.example.com/data", headers=headers)
+```
+
+---
+
+### Basic POST Request
+
+```python
+import requests
+
+data = {
+    "name": "web01",
+    "status": "active"
+}
+
+response = requests.post("https://api.example.com/servers", json=data)
+print(response.status_code)
+```
+
+---
+
+### Response Status Codes
+
+| **Code Range** | **Meaning**  |
+|----------------|--------------|
+| 200-299        | Success      |
+| 400-499        | Client error |
+| 500-599        | Server error |
+
+**Common codes:**
+
+| **Code** | **Meaning**           |
+|----------|-----------------------|
+| 200      | OK                    |
+| 201      | Created               |
+| 400      | Bad Request           |
+| 401      | Unauthorized          |
+| 403      | Forbidden             |
+| 404      | Not Found             |
+| 500      | Internal Server Error |
+
+**Always check the status code:**
+
+```python
+if response.status_code == 200:
+    data = response.json()
+    print("SUCCESS:", data)
+else:
+    print(f"ERROR: Request failed with status {response.status_code}")
+```
+
+---
+
+### Avoid Hard-Coded URLs
+
+**Less flexible:**
+
+```python
+response = requests.get("https://api.example.com/v1/servers")
+```
+
+**Better:**
+
+```python
+BASE_URL = "https://api.example.com"
+ENDPOINT = "/v1/servers"
+response = requests.get(BASE_URL + ENDPOINT)
+```
+
+---
+
+### Using Environment Variables for Secrets
+
+**Unsafe:**
+
+```python
+API_KEY = "abc123secretkey"
+```
+
+**Safer:**
+
+```python
+import os
+
+API_KEY = os.getenv("API_KEY")
+
+if API_KEY is None:
+    print("Error: API_KEY is not set")
+else:
+    print("API key loaded successfully")
+```
+
+**Example with requests:**
+
+```python
+import os
+import requests
+
+API_KEY = os.getenv("API_KEY")
+BASE_URL = os.getenv("API_BASE_URL", "https://api.example.com")
+
+headers = {
+    "Authorization": f"Bearer {API_KEY}"
+}
+
+response = requests.get(f"{BASE_URL}/status", headers=headers)
+print(response.status_code)
+```
+
+---
+
+### Extracting Relevant Fields
+
+```python
+if response.status_code == 200:
+    data = response.json()
+    hostname = data.get("hostname", "unknown")
+    status = data.get("status", "unknown")
+    print(hostname, status)
+```
+
+---
+
+### Applied Practice: Helpdesk Ticket Summary
+
+Goal:  
+Retrieve ticket data from an API and generate a summary.
+
+Steps:
+1. Import requests
+2. Set API URL, token, and headers
+3. Send a GET request
+4. Validate the response
+5. Count total, open, closed, and high-priority tickets
+6. Print a formatted summary
+
+---
+
+<details>
+<summary><strong>SOLUTION</strong></summary>
+
+```python
+import requests
+
+url = "http://api.d522.wgu.internal:5000/api/tickets"
+token = "vGkbXkGLqQSo7YLflp9DutuG8st4xdPPF7wnTcwB0FE"
+
+headers = {
+    "Authorization": f"Bearer {token}",
+    "Accept": "application/json"
+}
+
+response = requests.get(url, headers=headers)
+
+if response.status_code == 200:
+    tickets = response.json()
+
+    if isinstance(tickets, list) and len(tickets) > 0:
+        total = len(tickets)
+        open_count = 0
+        closed_count = 0
+        high_priority = 0
+
+        for ticket in tickets:
+            status = ticket.get("status", "").lower()
+            priority = ticket.get("priority", "").lower()
+
+            if status == "open":
+                open_count += 1
+            elif status == "closed":
+                closed_count += 1
+
+            if priority == "high":
+                high_priority += 1
+
+        print("Helpdesk Ticket Summary")
+        print("------------------------")
+        print(f"Total tickets: {total}")
+        print(f"Open tickets: {open_count}")
+        print(f"Closed tickets: {closed_count}")
+        print(f"High-priority tickets: {high_priority}")
+    else:
+        print("No ticket data returned from API.")
+else:
+    print(f"Request failed with status code: {response.status_code}")
+```
+   
+</details> <!-- Ends Solution -->
+
+---
+
+
+
+
+
+
+
+
+**Ends Section 3: Lesson 3**
+
+</details> <!-- Ends Section 3: Lesson 3 -->
+
+
+
 
 
 
