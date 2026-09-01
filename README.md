@@ -8,7 +8,14 @@
 
 ---
 
+**Prepare for the Assessment**  
+To prepare for the assessment, ask yourself these questions:
+- Can I write clean, well-documented code within Python scripts, demonstrating correct syntax and basic variable handling?
+- Can I create a README file that clearly documents the purpose, usage, and functionality of Python modules and scripts in a human-readable format, including descriptions of variables, data structures, and operators used?
 
+In this section, you can demonstrate these skills by passing a final assessment that measures whether you have mastered this competency:
+
+- Apply Python principles and syntax to manage variables, data structures, and operators to perform IT tasks.
 
 
 
@@ -25,7 +32,7 @@
 
 
 
-
+---
 
 <details>
 <summary><strong>Lesson 1 - Clean and Well-Documented Scripts</strong></summary>
@@ -271,7 +278,13 @@ if __name__ == "__main__":
 - Produce a README file that clearly documents the purpose, usage, functionality, variables, data structures, and control logic of a Python script in a human-readable format.
    
 ---
-   
+
+**Key Terms**
+- **README:** a document that explains how a piece of software or script works; provides a clear description of the script's purpose, how to run it, and what it is designed to accomplish
+- **cron:** a Unix or Linux scheduling tool that automates recurring commands or scripts at specified times
+
+---
+
 ### What is a README?
    
 A **README** is a document that explains how a script or piece of software works.\
