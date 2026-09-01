@@ -266,35 +266,36 @@ if __name__ == "__main__":
 
 <details>
 <summary><strong>Lesson 2 - README Files</strong></summary>
-   **Learning Objectives**
-   - Produce a README file that clearly documents the purpose, usage, functionality, variables, data structures, and control logic of a Python script in a human-readable format.
    
-   ---
+**Learning Objectives**
+- Produce a README file that clearly documents the purpose, usage, functionality, variables, data structures, and control logic of a Python script in a human-readable format.
    
-   ### What is a README?
+---
    
-   A **README** is a document that explains how a script or piece of software works.\
-   It should allow another person to understand the purpose and usage of the script **without reading the source code**.
+### What is a README?
    
-   ---
+A **README** is a document that explains how a script or piece of software works.\
+It should allow another person to understand the purpose and usage of the script **without reading the source code**.
+   
+---
 
-   ### README Example Structure
+### README Example Structure
 
-   A good README usually includes:
-   - Project Title
-   - Purpose / Overview
-   - Usage Instructions
-   - Configuration Variables
-   - Data Structures
-   - Logic Overview
-   - Example Execution / Output
+A good README usually includes:
+- Project Title
+- Purpose / Overview
+- Usage Instructions
+- Configuration Variables
+- Data Structures
+- Logic Overview
+- Example Execution / Output
    
-   ---
+---
 
-   ### Practical Task
+### Practical Task
 
-   **Overview**  
-   You will create a README file for a provided Python automation script.  
+**Overview**  
+You will create a README file for a provided Python automation script.  
    Your README should clearly explain what the script does and how to use it.
    
    **What the Script Does**
